@@ -4,10 +4,9 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -18,6 +17,7 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import java.util.List;
 
 
 /**
@@ -31,6 +31,7 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
     private ImageView icon;
     private DotsView dotsView;
     private CircleView circleView;
+    private Icon currentIcon;
 
     private boolean isChecked;
     private AnimatorSet animatorSet;
@@ -39,31 +40,36 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
     private Drawable offDrawable;
 
     public LikeView(Context context) {
-        super(context);
-        init();
+        this(context, null);
     }
 
     public LikeView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
+        this(context, attrs, 0);
     }
 
     public LikeView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(context, attrs, defStyleAttr);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public LikeView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        init();
-    }
 
-    private void init() {
+    private void init(Context context, AttributeSet attrs, int defStyle) {
+        if (!isInEditMode()) {
+            final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.LikeView, defStyle, 0);
+
+            String icontype = array.getString(R.styleable.LikeView_icon_type);
+
+            if (icontype != null)
+                if (icontype.isEmpty())
+                    currentIcon = parseIconType(icontype);
+
+        }
+
+
         LayoutInflater.from(getContext()).inflate(R.layout.likeview, this, true);
-        icon=(ImageView) findViewById(R.id.icon);
-        dotsView=(DotsView) findViewById(R.id.dots);
-        circleView=(CircleView)findViewById(R.id.circle);
+        icon = (ImageView) findViewById(R.id.icon);
+        dotsView = (DotsView) findViewById(R.id.dots);
+        circleView = (CircleView) findViewById(R.id.circle);
 
         setOnClickListener(this);
     }
@@ -71,7 +77,21 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         isChecked = !isChecked;
-        //icon.setImageResource(isChecked ? R.drawable.ic_star_rate_on : R.drawable.ic_star_rate_off);
+
+        if(currentIcon!=null)
+        {
+            icon.setImageResource(isChecked ? currentIcon.getOnIconResourceId() : currentIcon.getOffIconResourceId());
+
+        }
+        else if(onDrawable!=null && offDrawable!=null)
+        {
+            icon.setImageDrawable(isChecked?onDrawable:offDrawable);
+        }
+        else
+        {
+            currentIcon=parseIconType(IconType.Heart);
+            icon.setImageResource(isChecked ? currentIcon.getOnIconResourceId() : currentIcon.getOffIconResourceId());
+        }
 
         if (animatorSet != null) {
             animatorSet.cancel();
@@ -163,10 +183,41 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
     }
 
     public void setOnDrawable(Drawable onDrawable) {
+        currentIcon=null;
         this.onDrawable = onDrawable;
     }
 
     public void setOffDrawable(Drawable offDrawable) {
+        currentIcon=null;
         this.offDrawable = offDrawable;
+    }
+
+
+    public void setIcon(IconType currentIconType) {
+        currentIcon = parseIconType(currentIconType);
+    }
+
+    public Icon parseIconType(String iconType) {
+        List<Icon> icons = Utils.getIcons();
+
+        for (Icon icon : icons) {
+            if (icon.getIconType().name().toLowerCase().equals(iconType.toLowerCase())) {
+                return icon;
+            }
+        }
+
+        throw new IllegalArgumentException("Correct icon type not specified.");
+    }
+
+    public Icon parseIconType(IconType iconType) {
+        List<Icon> icons = Utils.getIcons();
+
+        for (Icon icon : icons) {
+            if (icon.getIconType().equals(iconType)) {
+                return icon;
+            }
+        }
+
+        throw new IllegalArgumentException("Correct icon type not specified.");
     }
 }

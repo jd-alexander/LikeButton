@@ -48,11 +48,7 @@ public class CircleView extends View {
         init();
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public CircleView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        init();
-    }
+
 
     private void init() {
         circlePaint.setStyle(Paint.Style.FILL);
