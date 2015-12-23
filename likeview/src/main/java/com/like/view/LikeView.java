@@ -60,7 +60,7 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
 
 
             if (icontype != null)
-                if (icontype.isEmpty())
+                if (!icontype.isEmpty())
                     currentIcon = parseIconType(icontype);
 
         array.recycle();
