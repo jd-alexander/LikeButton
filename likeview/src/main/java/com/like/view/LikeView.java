@@ -7,6 +7,7 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -30,6 +31,10 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
     private DotsView dotsView;
     private CircleView circleView;
     private Icon currentIcon;
+    private OnLikeListener likeListener;
+    private int[] dotColors;
+    private int circleStartColor;
+    private int circleEndColor;
 
     private boolean isChecked;
     private AnimatorSet animatorSet;
@@ -54,14 +59,13 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
     private void init(Context context, AttributeSet attrs, int defStyle) {
             final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.LikeView, defStyle, 0);
 
-            String icontype = array.getString(R.styleable.LikeView_icon_type);
+            String iconType = array.getString(R.styleable.LikeView_icon_type);
             onDrawable=array.getDrawable(R.styleable.LikeView_on_drawable);
             offDrawable=array.getDrawable(R.styleable.LikeView_off_drawable);
 
-
-            if (icontype != null)
-                if (!icontype.isEmpty())
-                    currentIcon = parseIconType(icontype);
+            if (iconType != null)
+                if (!iconType.isEmpty())
+                    currentIcon = parseIconType(iconType);
 
         array.recycle();
 
@@ -93,6 +97,18 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         isChecked = !isChecked;
+
+        if(likeListener!=null)
+        {
+            if(isChecked)
+            {
+               likeListener.liked();
+            }
+            else
+            {
+                likeListener.unliked();
+            }
+        }
 
         if(currentIcon!=null)
         {
@@ -235,5 +251,25 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
         }
 
         throw new IllegalArgumentException("Correct icon type not specified.");
+    }
+
+    public void setLikeListener(OnLikeListener likeListener) {
+        this.likeListener = likeListener;
+    }
+
+    public void setDotColors(int... colors)
+    {
+        this.dotColors=colors;
+        dotsView.setColors(colors);
+    }
+
+    public void setCircleStartColor(int circleStartColor) {
+        this.circleStartColor = circleStartColor;
+        circleView.setStartColor(ContextCompat.getColor(getContext(),circleStartColor));
+    }
+
+    public void setCircleEndColor(int circleEndColor) {
+        this.circleEndColor = circleEndColor;
+        circleView.setEndColor(ContextCompat.getColor(getContext(),circleEndColor));
     }
 }

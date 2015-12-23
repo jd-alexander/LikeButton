@@ -16,10 +16,10 @@ public class DotsView extends View {
     private static final int DOTS_COUNT = 7;
     private static final int OUTER_DOTS_POSITION_ANGLE = 51;
 
-    private static final int COLOR_1 = 0xFFFFC107;
-    private static final int COLOR_2 = 0xFFFF9800;
-    private static final int COLOR_3 = 0xFFFF5722;
-    private static final int COLOR_4 = 0xFFF44336;
+    private int COLOR_1 = 0xFFFFC107;
+    private int COLOR_2 = 0xFFFF9800;
+    private int COLOR_3 = 0xFFFF5722;
+    private int COLOR_4 = 0xFFF44336;
 
     private final Paint[] circlePaints = new Paint[4];
 
@@ -155,6 +155,14 @@ public class DotsView extends View {
             circlePaints[2].setColor((Integer) argbEvaluator.evaluate(progress, COLOR_4, COLOR_1));
             circlePaints[3].setColor((Integer) argbEvaluator.evaluate(progress, COLOR_1, COLOR_2));
         }
+    }
+
+    public void setColors(int... colors)
+    {
+        COLOR_1=colors[0];
+        COLOR_2=colors[1];
+        COLOR_3=colors[2];
+        COLOR_4=colors[3];
     }
 
     private void updateDotsAlpha() {

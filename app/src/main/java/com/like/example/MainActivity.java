@@ -18,8 +18,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.like_button)
-    LikeView likeButton;
     @Bind(R.id.fab)
     FloatingActionButton fab;
 

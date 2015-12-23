@@ -12,8 +12,8 @@ import android.util.Property;
 import android.view.View;
 
 public class CircleView extends View {
-    private static final int START_COLOR = 0xFFFF5722;
-    private static final int END_COLOR = 0xFFFFC107;
+    private int START_COLOR = 0xFFFF5722;
+    private int END_COLOR = 0xFFFFC107;
 
     private ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
@@ -116,4 +116,14 @@ public class CircleView extends View {
                     object.setOuterCircleRadiusProgress(value);
                 }
             };
+
+    public void setStartColor(int color)
+    {
+        START_COLOR=color;
+    }
+
+    public void setEndColor(int color)
+    {
+        END_COLOR=color;
+    }
 }
