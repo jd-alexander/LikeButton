@@ -1,21 +1,16 @@
 package com.like.view;
 
 import android.animation.ArgbEvaluator;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Property;
 import android.view.View;
 
-/**
- * Created by Miroslaw Stanek on 21.12.2015.
- */
 public class CircleView extends View {
     private static final int START_COLOR = 0xFFFF5722;
     private static final int END_COLOR = 0xFFFFC107;
@@ -47,7 +42,6 @@ public class CircleView extends View {
         super(context, attrs, defStyleAttr);
         init();
     }
-
 
 
     private void init() {

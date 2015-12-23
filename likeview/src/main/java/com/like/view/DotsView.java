@@ -11,9 +11,7 @@ import android.util.AttributeSet;
 import android.util.Property;
 import android.view.View;
 
-/**
- * Created by Miroslaw Stanek on 20.12.2015.
- */
+
 public class DotsView extends View {
     private static final int DOTS_COUNT = 7;
     private static final int OUTER_DOTS_POSITION_ANGLE = 51;

@@ -20,9 +20,7 @@ import android.widget.ImageView;
 import java.util.List;
 
 
-/**
- * Created by Miroslaw Stanek on 20.12.2015.
- */
+
 public class LikeView extends FrameLayout implements View.OnClickListener {
     private static final DecelerateInterpolator DECCELERATE_INTERPOLATOR = new DecelerateInterpolator();
     private static final AccelerateDecelerateInterpolator ACCELERATE_DECELERATE_INTERPOLATOR = new AccelerateDecelerateInterpolator();
@@ -54,22 +52,40 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
 
 
     private void init(Context context, AttributeSet attrs, int defStyle) {
-        if (!isInEditMode()) {
             final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.LikeView, defStyle, 0);
 
             String icontype = array.getString(R.styleable.LikeView_icon_type);
+            onDrawable=array.getDrawable(R.styleable.LikeView_on_drawable);
+            offDrawable=array.getDrawable(R.styleable.LikeView_off_drawable);
+
 
             if (icontype != null)
                 if (icontype.isEmpty())
                     currentIcon = parseIconType(icontype);
 
-        }
+        array.recycle();
 
 
         LayoutInflater.from(getContext()).inflate(R.layout.likeview, this, true);
         icon = (ImageView) findViewById(R.id.icon);
         dotsView = (DotsView) findViewById(R.id.dots);
         circleView = (CircleView) findViewById(R.id.circle);
+
+        if(currentIcon!=null)
+        {
+            icon.setImageResource(currentIcon.getOffIconResourceId());
+
+        }
+        else if(onDrawable!=null && offDrawable!=null)
+        {
+            icon.setImageDrawable(offDrawable);
+        }
+        else
+        {
+            currentIcon=parseIconType(IconType.Heart);
+            icon.setImageResource(currentIcon.getOffIconResourceId());
+        }
+
 
         setOnClickListener(this);
     }
