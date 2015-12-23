@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<declare-styleable name="LikeView">
-    <attr name="icon_type" format="string" />
-    <attr name="on_drawable" format="reference"/>
-    <attr name="off_drawable" format="reference"/>
-  <!--
-  <attr name="exploding_dots_colors" format="reference"/>
-    <attr name="circle_start_color" format="color|reference"/>
-    <attr name="circle_end_color" format="color|reference"/>
-    -->
-</declare-styleable>
+    <declare-styleable name="LikeView">
+        <attr name="icon_type" format="string" />
+        <attr name="on_drawable" format="reference" />
+        <attr name="off_drawable" format="reference" />
+
+        <attr name="exploding_dots_colors" format="reference" />
+        <attr name="circle_start_color" format="color|reference" />
+        <attr name="circle_end_color" format="color|reference" />
+
+    </declare-styleable>
 </resources>

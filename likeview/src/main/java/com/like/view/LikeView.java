@@ -21,7 +21,6 @@ import android.widget.ImageView;
 import java.util.List;
 
 
-
 public class LikeView extends FrameLayout implements View.OnClickListener {
     private static final DecelerateInterpolator DECCELERATE_INTERPOLATOR = new DecelerateInterpolator();
     private static final AccelerateDecelerateInterpolator ACCELERATE_DECELERATE_INTERPOLATOR = new AccelerateDecelerateInterpolator();
@@ -57,15 +56,18 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
 
 
     private void init(Context context, AttributeSet attrs, int defStyle) {
-            final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.LikeView, defStyle, 0);
+        final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.LikeView, defStyle, 0);
 
-            String iconType = array.getString(R.styleable.LikeView_icon_type);
-            onDrawable=array.getDrawable(R.styleable.LikeView_on_drawable);
-            offDrawable=array.getDrawable(R.styleable.LikeView_off_drawable);
-
-            if (iconType != null)
-                if (!iconType.isEmpty())
-                    currentIcon = parseIconType(iconType);
+        initColorsAttributes(array);
+        String iconType = array.getString(R.styleable.LikeView_icon_type);
+        onDrawable = array.getDrawable(R.styleable.LikeView_on_drawable);
+        offDrawable = array.getDrawable(R.styleable.LikeView_off_drawable);
+        setCircleStartColor(array.getColor(R.styleable.LikeView_circle_start_color, 0));
+        setCircleEndColor(array.getColor(R.styleable.LikeView_circle_end_color, 0));
+        
+        if (iconType != null)
+            if (!iconType.isEmpty())
+                currentIcon = parseIconType(iconType);
 
         array.recycle();
 
@@ -75,18 +77,13 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
         dotsView = (DotsView) findViewById(R.id.dots);
         circleView = (CircleView) findViewById(R.id.circle);
 
-        if(currentIcon!=null)
-        {
+        if (currentIcon != null) {
             icon.setImageResource(currentIcon.getOffIconResourceId());
 
-        }
-        else if(onDrawable!=null && offDrawable!=null)
-        {
+        } else if (onDrawable != null && offDrawable != null) {
             icon.setImageDrawable(offDrawable);
-        }
-        else
-        {
-            currentIcon=parseIconType(IconType.Heart);
+        } else {
+            currentIcon = parseIconType(IconType.Heart);
             icon.setImageResource(currentIcon.getOffIconResourceId());
         }
 
@@ -98,30 +95,21 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
     public void onClick(View v) {
         isChecked = !isChecked;
 
-        if(likeListener!=null)
-        {
-            if(isChecked)
-            {
-               likeListener.liked();
-            }
-            else
-            {
+        if (likeListener != null) {
+            if (isChecked) {
+                likeListener.liked();
+            } else {
                 likeListener.unliked();
             }
         }
 
-        if(currentIcon!=null)
-        {
+        if (currentIcon != null) {
             icon.setImageResource(isChecked ? currentIcon.getOnIconResourceId() : currentIcon.getOffIconResourceId());
 
-        }
-        else if(onDrawable!=null && offDrawable!=null)
-        {
-            icon.setImageDrawable(isChecked?onDrawable:offDrawable);
-        }
-        else
-        {
-            currentIcon=parseIconType(IconType.Heart);
+        } else if (onDrawable != null && offDrawable != null) {
+            icon.setImageDrawable(isChecked ? onDrawable : offDrawable);
+        } else {
+            currentIcon = parseIconType(IconType.Heart);
             icon.setImageResource(isChecked ? currentIcon.getOnIconResourceId() : currentIcon.getOffIconResourceId());
         }
 
@@ -214,13 +202,21 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
         return true;
     }
 
+
+    private void initColorsAttributes(TypedArray attributes) {
+        int arrayResourceId = attributes.getResourceId(R.styleable.LikeView_exploding_dots_colors, 0);
+        if (arrayResourceId != 0) {
+            setExplodingDotColors(getResources().getIntArray(arrayResourceId));
+        }
+    }
+
     public void setOnDrawable(Drawable onDrawable) {
-        currentIcon=null;
+        currentIcon = null;
         this.onDrawable = onDrawable;
     }
 
     public void setOffDrawable(Drawable offDrawable) {
-        currentIcon=null;
+        currentIcon = null;
         this.offDrawable = offDrawable;
     }
 
@@ -257,19 +253,18 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
         this.likeListener = likeListener;
     }
 
-    public void setDotColors(int... colors)
-    {
-        this.dotColors=colors;
+    public void setExplodingDotColors(int... colors) {
+        this.dotColors = colors;
         dotsView.setColors(colors);
     }
 
     public void setCircleStartColor(int circleStartColor) {
         this.circleStartColor = circleStartColor;
-        circleView.setStartColor(ContextCompat.getColor(getContext(),circleStartColor));
+        circleView.setStartColor(ContextCompat.getColor(getContext(), circleStartColor));
     }
 
     public void setCircleEndColor(int circleEndColor) {
         this.circleEndColor = circleEndColor;
-        circleView.setEndColor(ContextCompat.getColor(getContext(),circleEndColor));
+        circleView.setEndColor(ContextCompat.getColor(getContext(), circleEndColor));
     }
 }
