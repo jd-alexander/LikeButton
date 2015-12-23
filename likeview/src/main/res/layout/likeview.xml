@@ -4,22 +4,22 @@
     android:layout_height="match_parent">
 
     <com.like.view.DotsView
-        android:id="@+id/vDotsView"
+        android:id="@+id/dots"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="center"/>
 
     <com.like.view.CircleView
-        android:id="@+id/vCircle"
+        android:id="@+id/circle"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center"/>
 
     <ImageView
-        android:id="@+id/ivStar"
+        android:id="@+id/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/ic_star_rate_off"/>
+        />
 
 </merge>
