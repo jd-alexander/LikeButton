@@ -79,6 +79,17 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         likeDrawable = array.getDrawable(R.styleable.LikeButton_like_drawable);
         unlikeDrawable = array.getDrawable(R.styleable.LikeButton_unlike_drawable);
 
+
+        if (iconType != null)
+            if (!iconType.isEmpty())
+                currentIcon = parseIconType(iconType);
+
+
+        LayoutInflater.from(getContext()).inflate(R.layout.likeview, this, true);
+        icon = (ImageView) findViewById(R.id.icon);
+        dotsView = (DotsView) findViewById(R.id.dots);
+        circleView = (CircleView) findViewById(R.id.circle);
+
         circleStartColor = array.getColor(R.styleable.LikeButton_circle_start_color, 0);
 
         if (circleStartColor != 0)
@@ -96,18 +107,6 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
             dotsView.setColors(dotPrimaryColor, dotSecondaryColor);
         }
 
-        if (iconType != null)
-            if (!iconType.isEmpty())
-                currentIcon = parseIconType(iconType);
-
-        array.recycle();
-
-
-        LayoutInflater.from(getContext()).inflate(R.layout.likeview, this, true);
-        icon = (ImageView) findViewById(R.id.icon);
-        dotsView = (DotsView) findViewById(R.id.dots);
-        circleView = (CircleView) findViewById(R.id.circle);
-
 
         if (likeDrawable == null && unlikeDrawable == null) {
             if (currentIcon != null) {
@@ -122,6 +121,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
             }
         }
 
+        array.recycle();
         icon.setImageDrawable(unlikeDrawable);
         setEffectsViewSize();
         setOnClickListener(this);
@@ -278,6 +278,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         if (iconSize != 0) {
             unlikeDrawable = Utils.resizeDrawable(getContext(), unlikeDrawable, iconSize, iconSize);
         }
+        icon.setImageDrawable(unlikeDrawable);
     }
 
     /**
@@ -291,6 +292,8 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         if (iconSize != 0) {
             this.unlikeDrawable = Utils.resizeDrawable(getContext(), unlikeDrawable, iconSize, iconSize);
         }
+        icon.setImageDrawable(unlikeDrawable);
+
 
     }
 
@@ -374,17 +377,17 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
      * @param secondaryColor
      */
     public void setExplodingDotColors(@ColorRes int primaryColor, @ColorRes int secondaryColor) {
-        dotsView.setColors(primaryColor, secondaryColor);
+        dotsView.setColors(ContextCompat.getColor(getContext(),primaryColor), ContextCompat.getColor(getContext(),secondaryColor));
     }
 
     public void setCircleStartColor(@ColorRes int circleStartColor) {
         this.circleStartColor = circleStartColor;
-        circleView.setStartColor(ContextCompat.getColor(getContext(), circleStartColor));
+        circleView.setStartColor(ContextCompat.getColor(getContext(),circleStartColor));
     }
 
     public void setCircleEndColor(@ColorRes int circleEndColor) {
         this.circleEndColor = circleEndColor;
-        circleView.setEndColor(ContextCompat.getColor(getContext(), circleEndColor));
+        circleView.setEndColor(ContextCompat.getColor(getContext(),circleEndColor));
     }
 
     /**

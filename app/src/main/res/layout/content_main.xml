@@ -13,16 +13,43 @@
     tools:showIn="@layout/activity_main">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <com.like.LikeButton
             app:icon_type="star"
-            app:icon_size="50dp"
+            app:icon_size="25dp"
             android:id="@+id/star_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        <com.like.LikeButton
+            app:icon_type="heart"
+            app:icon_size="25dp"
+            android:id="@+id/heart_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
+        <com.like.LikeButton
+            app:icon_type="thumb"
+            app:icon_size="25dp"
+            app:circle_start_color="@android:color/holo_blue_bright"
+            app:circle_end_color="@android:color/holo_blue_dark"
+            app:dots_primary_color="@android:color/holo_blue_light"
+            app:dots_secondary_color="@android:color/holo_blue_dark"
+            android:id="@+id/thumb_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <com.like.LikeButton
+            app:icon_size="25dp"
+            app:circle_start_color="@android:color/holo_purple"
+            app:circle_end_color="@android:color/holo_purple"
+            app:dots_primary_color="@android:color/holo_blue_dark"
+            app:dots_secondary_color="@android:color/holo_blue_light"
+            android:id="@+id/smile_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
     </RelativeLayout>

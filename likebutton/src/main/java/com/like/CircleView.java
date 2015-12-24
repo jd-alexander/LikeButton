@@ -7,6 +7,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.support.annotation.ColorInt;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Property;
 import android.view.View;
@@ -136,11 +138,13 @@ public class CircleView extends View {
                 }
             };
 
-    public void setStartColor(int color) {
+    public void setStartColor(@ColorInt int color) {
         START_COLOR = color;
+        invalidate();
     }
 
-    public void setEndColor(int color) {
+    public void setEndColor(@ColorInt int color) {
         END_COLOR = color;
+        invalidate();
     }
 }

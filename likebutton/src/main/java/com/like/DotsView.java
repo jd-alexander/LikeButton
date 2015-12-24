@@ -5,6 +5,7 @@ import android.animation.ArgbEvaluator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.support.annotation.ColorInt;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Property;
@@ -159,11 +160,12 @@ public class DotsView extends View {
         }
     }
 
-    public void setColors(int primaryColor, int secondaryColor) {
-        COLOR_1 = ContextCompat.getColor(getContext(), primaryColor);
-        COLOR_2 = ContextCompat.getColor(getContext(), secondaryColor);
-        COLOR_3 = ContextCompat.getColor(getContext(), primaryColor);
-        COLOR_4 = ContextCompat.getColor(getContext(), primaryColor);
+    public void setColors(@ColorInt int primaryColor, @ColorInt int secondaryColor) {
+        COLOR_1 = primaryColor;
+        COLOR_2 = secondaryColor;
+        COLOR_3 = primaryColor;
+        COLOR_4 = secondaryColor;
+        invalidate();
     }
 
     private void updateDotsAlpha() {

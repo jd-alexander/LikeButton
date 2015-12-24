@@ -1,5 +1,6 @@
 package com.like.example;
 
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 
 import com.like.LikeButton;
 import com.like.OnLikeListener;
+import com.mikepenz.community_material_typeface_library.CommunityMaterial;
+import com.mikepenz.iconics.IconicsDrawable;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -20,10 +23,14 @@ public class MainActivity extends AppCompatActivity implements OnLikeListener {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.fab)
-    FloatingActionButton fab;
     @Bind(R.id.star_button)
     LikeButton starButton;
+    @Bind(R.id.heart_button)
+    LikeButton heartButton;
+    @Bind(R.id.thumb_button)
+    LikeButton thumbButton;
+    @Bind(R.id.smile_button)
+    LikeButton smileButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +41,18 @@ public class MainActivity extends AppCompatActivity implements OnLikeListener {
 
         starButton.setOnLikeListener(this);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        usingCustomIcons();
+
+    }
+
+    public void usingCustomIcons() {
+
+        //shown when the button is in its default state or when unliked.
+        smileButton.setUnlikeDrawable(new BitmapDrawable(getResources(),new IconicsDrawable(this, CommunityMaterial.Icon.cmd_emoticon).colorRes(android.R.color.darker_gray).sizeDp(25).toBitmap()));
+
+        //shown when the button is liked!
+        smileButton.setLikeDrawable(new BitmapDrawable(getResources(),new IconicsDrawable(this, CommunityMaterial.Icon.cmd_emoticon).colorRes(android.R.color.holo_purple).sizeDp(25).toBitmap()));
+
     }
 
     @Override
@@ -67,11 +79,11 @@ public class MainActivity extends AppCompatActivity implements OnLikeListener {
 
     @Override
     public void liked() {
-        Toast.makeText(this,"Liked!",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Liked!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void unliked() {
-        Toast.makeText(this,"Disliked!",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Disliked!", Toast.LENGTH_SHORT).show();
     }
 }
