@@ -3,8 +3,8 @@
     <declare-styleable name="LikeButton">
         <attr name="icon_type" format="string" />
         <attr name="icon_size" format="dimension|reference"/>
-        <attr name="on_drawable" format="reference" />
-        <attr name="off_drawable" format="reference" />
+        <attr name="like_drawable" format="reference" />
+        <attr name="unlike_drawable" format="reference" />
         <attr name="dots_primary_color" format="color|reference" />
         <attr name="dots_secondary_color" format="color|reference" />
         <attr name="circle_start_color" format="color|reference" />
