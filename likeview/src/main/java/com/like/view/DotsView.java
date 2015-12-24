@@ -20,8 +20,8 @@ public class DotsView extends View {
     private int COLOR_3 = 0xFFFF5722;
     private int COLOR_4 = 0xFFF44336;
 
-    private int width=0;
-    private  int height=0;
+    private int width = 0;
+    private int height = 0;
 
     private final Paint[] circlePaints = new Paint[4];
 
@@ -159,12 +159,11 @@ public class DotsView extends View {
         }
     }
 
-    public void setColors(int primaryColor,int secondaryColor)
-    {
-        COLOR_1= ContextCompat.getColor(getContext(),primaryColor);
-        COLOR_2=ContextCompat.getColor(getContext(),secondaryColor);
-        COLOR_3=ContextCompat.getColor(getContext(),primaryColor);
-        COLOR_4=ContextCompat.getColor(getContext(),primaryColor);
+    public void setColors(int primaryColor, int secondaryColor) {
+        COLOR_1 = ContextCompat.getColor(getContext(), primaryColor);
+        COLOR_2 = ContextCompat.getColor(getContext(), secondaryColor);
+        COLOR_3 = ContextCompat.getColor(getContext(), primaryColor);
+        COLOR_4 = ContextCompat.getColor(getContext(), primaryColor);
     }
 
     private void updateDotsAlpha() {
@@ -176,19 +175,18 @@ public class DotsView extends View {
         circlePaints[3].setAlpha(alpha);
     }
 
-    public void setSize(int width,int height)
-    {
-        this.width=width;
-        this.height=height;
+    public void setSize(int width, int height) {
+        this.width = width;
+        this.height = height;
         invalidate();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec,heightMeasureSpec);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        if(width!=0 && height!=0)
-            setMeasuredDimension(width,height);
+        if (width != 0 && height != 0)
+            setMeasuredDimension(width, height);
     }
 
 

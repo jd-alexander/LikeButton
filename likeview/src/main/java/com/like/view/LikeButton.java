@@ -23,7 +23,7 @@ import android.widget.ImageView;
 import java.util.List;
 
 
-public class LikeView extends FrameLayout implements View.OnClickListener {
+public class LikeButton extends FrameLayout implements View.OnClickListener {
     private static final DecelerateInterpolator DECCELERATE_INTERPOLATOR = new DecelerateInterpolator();
     private static final AccelerateDecelerateInterpolator ACCELERATE_DECELERATE_INTERPOLATOR = new AccelerateDecelerateInterpolator();
     private static final OvershootInterpolator OVERSHOOT_INTERPOLATOR = new OvershootInterpolator(4);
@@ -45,48 +45,47 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
     private Drawable onDrawable;
     private Drawable offDrawable;
 
-    public LikeView(Context context) {
+    public LikeButton(Context context) {
         this(context, null);
     }
 
-    public LikeView(Context context, AttributeSet attrs) {
+    public LikeButton(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public LikeView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LikeButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs, defStyleAttr);
     }
 
 
     private void init(Context context, AttributeSet attrs, int defStyle) {
-        final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.LikeView, defStyle, 0);
+        final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.LikeButton, defStyle, 0);
 
-        iconSize = array.getDimensionPixelSize(R.styleable.LikeView_icon_size, -1);
-        if(iconSize==-1)
-            iconSize=40;
+        iconSize = array.getDimensionPixelSize(R.styleable.LikeButton_icon_size, -1);
+        if (iconSize == -1)
+            iconSize = 40;
 
-        String iconType = array.getString(R.styleable.LikeView_icon_type);
+        String iconType = array.getString(R.styleable.LikeButton_icon_type);
 
-        onDrawable = array.getDrawable(R.styleable.LikeView_on_drawable);
-        offDrawable = array.getDrawable(R.styleable.LikeView_off_drawable);
+        onDrawable = array.getDrawable(R.styleable.LikeButton_on_drawable);
+        offDrawable = array.getDrawable(R.styleable.LikeButton_off_drawable);
 
-        circleStartColor=array.getColor(R.styleable.LikeView_circle_start_color, 0);
+        circleStartColor = array.getColor(R.styleable.LikeButton_circle_start_color, 0);
 
-        if(circleStartColor!=0)
-        circleView.setStartColor(circleStartColor);
+        if (circleStartColor != 0)
+            circleView.setStartColor(circleStartColor);
 
-        circleEndColor=array.getColor(R.styleable.LikeView_circle_end_color, 0);
+        circleEndColor = array.getColor(R.styleable.LikeButton_circle_end_color, 0);
 
-        if(circleEndColor!=0)
-        circleView.setEndColor(circleEndColor);
+        if (circleEndColor != 0)
+            circleView.setEndColor(circleEndColor);
 
-        dotPrimaryColor=array.getColor(R.styleable.LikeView_dots_primary_color, 0);
-        dotSecondaryColor=array.getColor(R.styleable.LikeView_dots_secondary_color, 0);
+        dotPrimaryColor = array.getColor(R.styleable.LikeButton_dots_primary_color, 0);
+        dotSecondaryColor = array.getColor(R.styleable.LikeButton_dots_secondary_color, 0);
 
-        if(dotPrimaryColor!=0 && dotSecondaryColor!=0)
-        {
-            dotsView.setColors(dotPrimaryColor,dotSecondaryColor);
+        if (dotPrimaryColor != 0 && dotSecondaryColor != 0) {
+            dotsView.setColors(dotPrimaryColor, dotSecondaryColor);
         }
 
         if (iconType != null)
@@ -267,9 +266,8 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
         setOffDrawableRes(currentIcon.getOffIconResourceId());
     }
 
-    public void setIconSize(int iconSize)
-    {
-        this.iconSize=iconSize;
+    public void setIconSize(int iconSize) {
+        this.iconSize = iconSize;
         setEffectsViewSize();
         this.offDrawable = Utils.resizeDrawable(getContext(), offDrawable, iconSize, iconSize);
         this.onDrawable = Utils.resizeDrawable(getContext(), onDrawable, iconSize, iconSize);
@@ -299,11 +297,11 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
         throw new IllegalArgumentException("Correct icon type not specified.");
     }
 
-    public void setLikeListener(OnLikeListener likeListener) {
+    public void setOnLikeListener(OnLikeListener likeListener) {
         this.likeListener = likeListener;
     }
 
-    public void setExplodingDotColors(@ColorRes int primaryColor,@ColorRes int secondaryColor) {
+    public void setExplodingDotColors(@ColorRes int primaryColor, @ColorRes int secondaryColor) {
         dotsView.setColors(primaryColor, secondaryColor);
     }
 
@@ -318,12 +316,10 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
     }
 
 
-    public void setEffectsViewSize()
-    {
-        if(iconSize!=0)
-        {
-            dotsView.setSize(iconSize*3,iconSize*3);
-            circleView.setSize(iconSize,iconSize);
+    public void setEffectsViewSize() {
+        if (iconSize != 0) {
+            dotsView.setSize(iconSize * 3, iconSize * 3);
+            circleView.setSize(iconSize, iconSize);
         }
-       }
+    }
 }

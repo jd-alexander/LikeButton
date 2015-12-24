@@ -21,18 +21,16 @@ public class Utils {
         return Math.min(Math.max(value, low), high);
     }
 
-    public static List<Icon> getIcons()
-    {
+    public static List<Icon> getIcons() {
         List<Icon> icons = new ArrayList<>();
-        icons.add(new Icon(R.drawable.heart_on,R.drawable.heart_off,IconType.Heart));
-        icons.add(new Icon(R.drawable.star_on,R.drawable.star_off,IconType.Star));
-        icons.add(new Icon(R.drawable.thumb_on,R.drawable.thumb_off,IconType.Thumb));
+        icons.add(new Icon(R.drawable.heart_on, R.drawable.heart_off, IconType.Heart));
+        icons.add(new Icon(R.drawable.star_on, R.drawable.star_off, IconType.Star));
+        icons.add(new Icon(R.drawable.thumb_on, R.drawable.thumb_off, IconType.Thumb));
 
         return icons;
     }
 
-    public static Drawable resizeDrawable(Context context, Drawable drawable,int width,int height )
-    {
+    public static Drawable resizeDrawable(Context context, Drawable drawable, int width, int height) {
         Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
         Drawable newDrawable = new BitmapDrawable(context.getResources(), Bitmap.createScaledBitmap(bitmap, width, height, true));
 

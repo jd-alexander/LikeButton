@@ -8,18 +8,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
-import com.like.view.LikeView;
+import com.like.view.LikeButton;
+import com.like.view.OnLikeListener;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnLikeListener {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.fab)
     FloatingActionButton fab;
+    @Bind(R.id.star_button)
+    LikeButton starButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+
+        starButton.setOnLikeListener(this);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,5 +63,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void liked() {
+        Toast.makeText(this,"Liked!",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void unliked() {
+        Toast.makeText(this,"Disliked!",Toast.LENGTH_SHORT).show();
     }
 }

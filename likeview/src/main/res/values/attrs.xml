@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="LikeView">
+    <declare-styleable name="LikeButton">
         <attr name="icon_type" format="string" />
         <attr name="icon_size" format="dimension|reference"/>
         <attr name="on_drawable" format="reference" />

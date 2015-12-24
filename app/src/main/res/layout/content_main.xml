@@ -16,7 +16,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.like.view.LikeView
+        <com.like.view.LikeButton
             app:icon_type="star"
             app:icon_size="50dp"
             android:id="@+id/star_button"

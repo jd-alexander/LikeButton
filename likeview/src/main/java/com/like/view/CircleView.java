@@ -26,8 +26,8 @@ public class CircleView extends View {
     private float outerCircleRadiusProgress = 0f;
     private float innerCircleRadiusProgress = 0f;
 
-    private int width=0;
-    private int height=0;
+    private int width = 0;
+    private int height = 0;
 
     private int maxCircleSize;
 
@@ -52,22 +52,20 @@ public class CircleView extends View {
         maskPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
-    public void setSize(int width,int height)
-    {
-        this.width=width;
-        this.height=height;
+    public void setSize(int width, int height) {
+        this.width = width;
+        this.height = height;
         invalidate();
     }
 
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-            super.onMeasure(widthMeasureSpec,heightMeasureSpec);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        if(width!=0 && height!=0)
-        setMeasuredDimension(width,height);
+        if (width != 0 && height != 0)
+            setMeasuredDimension(width, height);
     }
-
 
 
     @Override
@@ -138,13 +136,11 @@ public class CircleView extends View {
                 }
             };
 
-    public void setStartColor(int color)
-    {
-        START_COLOR=color;
+    public void setStartColor(int color) {
+        START_COLOR = color;
     }
 
-    public void setEndColor(int color)
-    {
-        END_COLOR=color;
+    public void setEndColor(int color) {
+        END_COLOR = color;
     }
 }
