@@ -1,5 +1,11 @@
 package com.like.view;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +29,14 @@ public class Utils {
         icons.add(new Icon(R.drawable.thumb_on,R.drawable.thumb_off,IconType.Thumb));
 
         return icons;
+    }
+
+    public static Drawable resizeDrawable(Context context, Drawable drawable,int width,int height )
+    {
+        Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+        Drawable newDrawable = new BitmapDrawable(context.getResources(), Bitmap.createScaledBitmap(bitmap, width, height, true));
+
+        return newDrawable;
     }
 }
 

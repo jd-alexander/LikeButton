@@ -7,6 +7,7 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -35,6 +36,7 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
     private int dotSecondaryColor;
     private int circleStartColor;
     private int circleEndColor;
+    private int iconSize;
 
     private boolean isChecked;
     private AnimatorSet animatorSet;
@@ -59,12 +61,13 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
     private void init(Context context, AttributeSet attrs, int defStyle) {
         final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.LikeView, defStyle, 0);
 
+        iconSize = array.getDimensionPixelSize(R.styleable.LikeView_icon_size, -1);
         String iconType = array.getString(R.styleable.LikeView_icon_type);
         onDrawable = array.getDrawable(R.styleable.LikeView_on_drawable);
         offDrawable = array.getDrawable(R.styleable.LikeView_off_drawable);
         setCircleStartColor(array.getColor(R.styleable.LikeView_circle_start_color, 0));
         setCircleEndColor(array.getColor(R.styleable.LikeView_circle_end_color, 0));
-        setExplodingDotColors(array.getColor(R.styleable.LikeView_dots_primary_color,0),array.getColor(R.styleable.LikeView_dots_secondary_color,0));
+        setExplodingDotColors(array.getColor(R.styleable.LikeView_dots_primary_color, 0), array.getColor(R.styleable.LikeView_dots_secondary_color, 0));
 
         if (iconType != null)
             if (!iconType.isEmpty())
@@ -78,16 +81,22 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
         dotsView = (DotsView) findViewById(R.id.dots);
         circleView = (CircleView) findViewById(R.id.circle);
 
-        if (currentIcon != null) {
-            icon.setImageResource(currentIcon.getOffIconResourceId());
 
-        } else if (onDrawable != null && offDrawable != null) {
-            icon.setImageDrawable(offDrawable);
-        } else {
-            currentIcon = parseIconType(IconType.Heart);
-            icon.setImageResource(currentIcon.getOffIconResourceId());
+        if (onDrawable == null && offDrawable == null) {
+            if (currentIcon != null) {
+
+                setOnDrawableRes(currentIcon.getOnIconResourceId());
+                setOffDrawableRes(currentIcon.getOffIconResourceId());
+            } else {
+                currentIcon = parseIconType(IconType.Heart);
+                setOnDrawableRes(currentIcon.getOnIconResourceId());
+                setOffDrawableRes(currentIcon.getOffIconResourceId());
+
+            }
         }
 
+        icon.setImageDrawable(offDrawable);
+        setEffectsViewSize();
 
         setOnClickListener(this);
     }
@@ -96,22 +105,14 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
     public void onClick(View v) {
         isChecked = !isChecked;
 
+        icon.setImageDrawable(isChecked ? onDrawable : offDrawable);
+
         if (likeListener != null) {
             if (isChecked) {
                 likeListener.liked();
             } else {
                 likeListener.unliked();
             }
-        }
-
-        if (currentIcon != null) {
-            icon.setImageResource(isChecked ? currentIcon.getOnIconResourceId() : currentIcon.getOffIconResourceId());
-
-        } else if (onDrawable != null && offDrawable != null) {
-            icon.setImageDrawable(isChecked ? onDrawable : offDrawable);
-        } else {
-            currentIcon = parseIconType(IconType.Heart);
-            icon.setImageResource(isChecked ? currentIcon.getOnIconResourceId() : currentIcon.getOffIconResourceId());
         }
 
         if (animatorSet != null) {
@@ -204,20 +205,55 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
     }
 
 
+    public void setOnDrawableRes(@DrawableRes int resId) {
+        onDrawable = ContextCompat.getDrawable(getContext(), resId);
+
+        if (iconSize != 0) {
+            onDrawable = Utils.resizeDrawable(getContext(), onDrawable, iconSize, iconSize);
+        }
+    }
 
     public void setOnDrawable(Drawable onDrawable) {
-        currentIcon = null;
+
         this.onDrawable = onDrawable;
+
+        if (iconSize != 0) {
+            this.onDrawable = Utils.resizeDrawable(getContext(), onDrawable, iconSize, iconSize);
+        }
+
+    }
+
+    public void setOffDrawableRes(@DrawableRes int resId) {
+        offDrawable = ContextCompat.getDrawable(getContext(), resId);
+
+        if (iconSize != 0) {
+            offDrawable = Utils.resizeDrawable(getContext(), offDrawable, iconSize, iconSize);
+        }
     }
 
     public void setOffDrawable(Drawable offDrawable) {
-        currentIcon = null;
+
         this.offDrawable = offDrawable;
+
+        if (iconSize != 0) {
+            this.offDrawable = Utils.resizeDrawable(getContext(), offDrawable, iconSize, iconSize);
+        }
+
     }
 
 
     public void setIcon(IconType currentIconType) {
         currentIcon = parseIconType(currentIconType);
+        setOnDrawableRes(currentIcon.getOnIconResourceId());
+        setOffDrawableRes(currentIcon.getOffIconResourceId());
+    }
+
+    public void setIconSize(int iconSize)
+    {
+        this.iconSize=iconSize;
+        setEffectsViewSize();
+        this.offDrawable = Utils.resizeDrawable(getContext(), offDrawable, iconSize, iconSize);
+        this.onDrawable = Utils.resizeDrawable(getContext(), onDrawable, iconSize, iconSize);
     }
 
     public Icon parseIconType(String iconType) {
@@ -248,8 +284,8 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
         this.likeListener = likeListener;
     }
 
-    public void setExplodingDotColors(int primaryColor,int secondaryColor) {
-        dotsView.setColors(primaryColor,secondaryColor);
+    public void setExplodingDotColors(int primaryColor, int secondaryColor) {
+        dotsView.setColors(primaryColor, secondaryColor);
     }
 
     public void setCircleStartColor(int circleStartColor) {
@@ -261,4 +297,19 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
         this.circleEndColor = circleEndColor;
         circleView.setEndColor(ContextCompat.getColor(getContext(), circleEndColor));
     }
+
+
+    public void setEffectsViewSize()
+    {
+        if(iconSize!=0)
+        {
+            dotsView.setSize(iconSize*8,iconSize*8);
+            circleView.setSize(iconSize*3,iconSize*3);
+        }
+        else
+        {
+            iconSize=20;
+        }
+    }
+
 }

@@ -26,6 +26,9 @@ public class CircleView extends View {
     private float outerCircleRadiusProgress = 0f;
     private float innerCircleRadiusProgress = 0f;
 
+    private int width=0;
+    private int height=0;
+
     private int maxCircleSize;
 
     public CircleView(Context context) {
@@ -47,6 +50,22 @@ public class CircleView extends View {
     private void init() {
         circlePaint.setStyle(Paint.Style.FILL);
         maskPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+    }
+
+    public void setSize(int width,int height)
+    {
+        this.width=width;
+        this.height=height;
+        invalidate();
+    }
+
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        if(width==0 && height==0)
+            super.onMeasure(widthMeasureSpec,heightMeasureSpec);
+        else
+        setMeasuredDimension(width,height);
     }
 
     @Override
