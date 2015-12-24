@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.like.view.DotsView
+    <com.like.DotsView
         android:id="@+id/dots"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="center"/>
 
-    <com.like.view.CircleView
+    <com.like.CircleView
         android:id="@+id/circle"
         android:layout_width="80dp"
         android:layout_height="80dp"

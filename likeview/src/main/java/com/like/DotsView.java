@@ -1,4 +1,4 @@
-package com.like.view;
+package com.like;
 
 
 import android.animation.ArgbEvaluator;

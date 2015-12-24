@@ -1,10 +1,11 @@
-package com.like.view;
+package com.like;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.DrawableRes;
+
+import com.like.view.R;
 
 import java.util.ArrayList;
 import java.util.List;

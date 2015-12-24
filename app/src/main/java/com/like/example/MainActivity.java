@@ -10,8 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.like.view.LikeButton;
-import com.like.view.OnLikeListener;
+import com.like.LikeButton;
+import com.like.OnLikeListener;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
