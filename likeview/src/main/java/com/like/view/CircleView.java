@@ -62,11 +62,13 @@ public class CircleView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if(width==0 && height==0)
             super.onMeasure(widthMeasureSpec,heightMeasureSpec);
-        else
+
+        if(width!=0 && height!=0)
         setMeasuredDimension(width,height);
     }
+
+
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {

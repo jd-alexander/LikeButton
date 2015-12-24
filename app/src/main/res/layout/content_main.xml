@@ -18,19 +18,11 @@
         android:layout_height="wrap_content">
         <com.like.view.LikeView
             app:icon_type="star"
+            app:icon_size="50dp"
             android:id="@+id/star_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-        <com.like.view.LikeView
-            app:icon_type="heart"
-            android:id="@+id/heart_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <com.like.view.LikeView
-            app:icon_type="thumb"
-            android:id="@+id/like_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
 
     </LinearLayout>
     </RelativeLayout>

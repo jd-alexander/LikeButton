@@ -2,12 +2,9 @@ package com.like.view;
 
 
 import android.animation.ArgbEvaluator;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.os.Build;
-import android.support.annotation.ColorRes;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Property;
@@ -73,7 +70,7 @@ public class DotsView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         centerX = w / 2;
         centerY = h / 2;
-        maxDotSize = 20;
+        maxDotSize = 5;
         maxOuterDotsRadius = w / 2 - maxDotSize * 2;
         maxInnerDotsRadius = 0.8f * maxOuterDotsRadius;
     }
@@ -162,7 +159,7 @@ public class DotsView extends View {
         }
     }
 
-    public void setColors(@ColorRes int primaryColor,@ColorRes int secondaryColor)
+    public void setColors(int primaryColor,int secondaryColor)
     {
         COLOR_1= ContextCompat.getColor(getContext(),primaryColor);
         COLOR_2=ContextCompat.getColor(getContext(),secondaryColor);
@@ -186,12 +183,11 @@ public class DotsView extends View {
         invalidate();
     }
 
-
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if(width==0 && height==0)
-            super.onMeasure(widthMeasureSpec,heightMeasureSpec);
-        else
+        super.onMeasure(widthMeasureSpec,heightMeasureSpec);
+
+        if(width!=0 && height!=0)
             setMeasuredDimension(width,height);
     }
 
