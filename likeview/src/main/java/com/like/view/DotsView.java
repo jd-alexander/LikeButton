@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Build;
+import android.support.annotation.ColorRes;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Property;
@@ -158,12 +159,12 @@ public class DotsView extends View {
         }
     }
 
-    public void setColors(int... colors)
+    public void setColors(@ColorRes int primaryColor,@ColorRes int secondaryColor)
     {
-        COLOR_1= ContextCompat.getColor(getContext(),colors[0]);
-        COLOR_2=ContextCompat.getColor(getContext(),colors[1]);
-        COLOR_3=ContextCompat.getColor(getContext(),colors[2]);
-        COLOR_4=ContextCompat.getColor(getContext(),colors[3]);
+        COLOR_1= ContextCompat.getColor(getContext(),primaryColor);
+        COLOR_2=ContextCompat.getColor(getContext(),secondaryColor);
+        COLOR_3=ContextCompat.getColor(getContext(),primaryColor);
+        COLOR_4=ContextCompat.getColor(getContext(),primaryColor);
     }
 
     private void updateDotsAlpha() {

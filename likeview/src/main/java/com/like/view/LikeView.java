@@ -31,7 +31,8 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
     private CircleView circleView;
     private Icon currentIcon;
     private OnLikeListener likeListener;
-    private int[] dotColors;
+    private int dotPrimaryColor;
+    private int dotSecondaryColor;
     private int circleStartColor;
     private int circleEndColor;
 
@@ -58,13 +59,13 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
     private void init(Context context, AttributeSet attrs, int defStyle) {
         final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.LikeView, defStyle, 0);
 
-        initColorsAttributes(array);
         String iconType = array.getString(R.styleable.LikeView_icon_type);
         onDrawable = array.getDrawable(R.styleable.LikeView_on_drawable);
         offDrawable = array.getDrawable(R.styleable.LikeView_off_drawable);
         setCircleStartColor(array.getColor(R.styleable.LikeView_circle_start_color, 0));
         setCircleEndColor(array.getColor(R.styleable.LikeView_circle_end_color, 0));
-        
+        setExplodingDotColors(array.getColor(R.styleable.LikeView_dots_primary_color,0),array.getColor(R.styleable.LikeView_dots_secondary_color,0));
+
         if (iconType != null)
             if (!iconType.isEmpty())
                 currentIcon = parseIconType(iconType);
@@ -203,12 +204,6 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
     }
 
 
-    private void initColorsAttributes(TypedArray attributes) {
-        int arrayResourceId = attributes.getResourceId(R.styleable.LikeView_exploding_dots_colors, 0);
-        if (arrayResourceId != 0) {
-            setExplodingDotColors(getResources().getIntArray(arrayResourceId));
-        }
-    }
 
     public void setOnDrawable(Drawable onDrawable) {
         currentIcon = null;
@@ -253,9 +248,8 @@ public class LikeView extends FrameLayout implements View.OnClickListener {
         this.likeListener = likeListener;
     }
 
-    public void setExplodingDotColors(int... colors) {
-        this.dotColors = colors;
-        dotsView.setColors(colors);
+    public void setExplodingDotColors(int primaryColor,int secondaryColor) {
+        dotsView.setColors(primaryColor,secondaryColor);
     }
 
     public void setCircleStartColor(int circleStartColor) {
