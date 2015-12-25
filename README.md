@@ -70,7 +70,7 @@ To use this like button in your layout simply copy and paste the xml below. This
 
 ```xml
 <com.like.LikeButton
-            app:icon_type="star"
+            app:icon_type="heart"
             app:icon_size="25dp"
             android:id="@+id/star_button"
             android:layout_width="wrap_content"
