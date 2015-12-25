@@ -126,7 +126,7 @@ likeButton.setOnLikeListener(new OnLikeListener() {
 
 ---
 
-#Icon Types
+# Icon Types
 
 The libary is bundled with three icons that you can use. A heart,thumb and a star. 
 
@@ -229,7 +229,7 @@ likeButton.setExplodingDotColorsRes(R.color.colorPrimary,R.color.colorAccent);
 ```
 ---
 
-# Inpsiration
+# Inspiration
 
 This library was made by possible based on code and design inspiration from these sources:
 https://github.com/frogermcs/LikeAnimation
