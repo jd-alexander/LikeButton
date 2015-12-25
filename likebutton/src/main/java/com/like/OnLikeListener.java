@@ -5,5 +5,5 @@ package com.like;
  */
 public interface OnLikeListener {
     void liked();
-    void unliked();
+    void unLiked();
 }

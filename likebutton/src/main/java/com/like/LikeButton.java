@@ -148,7 +148,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
             if (isChecked) {
                 likeListener.liked();
             } else {
-                likeListener.unliked();
+                likeListener.unLiked();
             }
         }
 
@@ -275,7 +275,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     }
 
     /**
-     * This drawable will be shown when the button is in on unliked state.
+     * This drawable will be shown when the button is in on unLiked state.
      * @param resId
      */
     public void setUnlikeDrawableRes(@DrawableRes int resId) {
@@ -288,7 +288,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     }
 
     /**
-     * This drawable will be shown when the button is in on unliked state.
+     * This drawable will be shown when the button is in on unLiked state.
      * @param unlikeDrawable
      */
     public void setUnlikeDrawable(Drawable unlikeDrawable) {
@@ -318,7 +318,17 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
      * the like effect are also updated to reflect the size of the icon.
      * @param iconSize
      */
-    public void setIconSize(int iconSize) {
+
+    public void setIconSizeDp(int iconSize)
+    {
+        setIconSizePx((int)Utils.dipToPixels(getContext(),(float)iconSize));
+    }
+    /**
+     * Sets the size of the drawable/icon that's being used. The views that generate
+     * the like effect are also updated to reflect the size of the icon.
+     * @param iconSize
+     */
+    public void setIconSizePx(int iconSize) {
         this.iconSize = iconSize;
         setEffectsViewSize();
         this.unlikeDrawable = Utils.resizeDrawable(getContext(), unlikeDrawable, iconSize, iconSize);
@@ -368,7 +378,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
 
     /**
      * Listener that is triggered once the
-     * button is in a liked or unliked state
+     * button is in a liked or unLiked state
      * @param likeListener
      */
     public void setOnLikeListener(OnLikeListener likeListener) {
@@ -382,16 +392,16 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
      * @param primaryColor
      * @param secondaryColor
      */
-    public void setExplodingDotColors(@ColorRes int primaryColor, @ColorRes int secondaryColor) {
+    public void setExplodingDotColorsRes(@ColorRes int primaryColor, @ColorRes int secondaryColor) {
         dotsView.setColors(ContextCompat.getColor(getContext(),primaryColor), ContextCompat.getColor(getContext(),secondaryColor));
     }
 
-    public void setCircleStartColor(@ColorRes int circleStartColor) {
+    public void setCircleStartColorRes(@ColorRes int circleStartColor) {
         this.circleStartColor = circleStartColor;
         circleView.setStartColor(ContextCompat.getColor(getContext(),circleStartColor));
     }
 
-    public void setCircleEndColor(@ColorRes int circleEndColor) {
+    public void setCircleEndColorRes(@ColorRes int circleEndColor) {
         this.circleEndColor = circleEndColor;
         circleView.setEndColor(ContextCompat.getColor(getContext(),circleEndColor));
     }
