@@ -68,6 +68,11 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
      * @param defStyle
      */
     private void init(Context context, AttributeSet attrs, int defStyle) {
+        LayoutInflater.from(getContext()).inflate(R.layout.likeview, this, true);
+        icon = (ImageView) findViewById(R.id.icon);
+        dotsView = (DotsView) findViewById(R.id.dots);
+        circleView = (CircleView) findViewById(R.id.circle);
+
         final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.LikeButton, defStyle, 0);
 
         iconSize = array.getDimensionPixelSize(R.styleable.LikeButton_icon_size, -1);
@@ -77,18 +82,19 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         String iconType = array.getString(R.styleable.LikeButton_icon_type);
 
         likeDrawable = array.getDrawable(R.styleable.LikeButton_like_drawable);
+
+        if(likeDrawable!=null)
+            setLikeDrawable(likeDrawable);
+
         unlikeDrawable = array.getDrawable(R.styleable.LikeButton_unlike_drawable);
 
+        if(unlikeDrawable!=null)
+            setUnlikeDrawable(unlikeDrawable);
 
         if (iconType != null)
             if (!iconType.isEmpty())
                 currentIcon = parseIconType(iconType);
 
-
-        LayoutInflater.from(getContext()).inflate(R.layout.likeview, this, true);
-        icon = (ImageView) findViewById(R.id.icon);
-        dotsView = (DotsView) findViewById(R.id.dots);
-        circleView = (CircleView) findViewById(R.id.circle);
 
         circleStartColor = array.getColor(R.styleable.LikeButton_circle_start_color, 0);
 

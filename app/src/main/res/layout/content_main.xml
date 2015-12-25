@@ -31,8 +31,9 @@
             android:layout_height="wrap_content"/>
 
         <com.like.LikeButton
-            app:icon_type="thumb"
             app:icon_size="25dp"
+            app:like_drawable="@drawable/thumb_on"
+            app:unlike_drawable="@drawable/thumb_off"
             app:circle_start_color="@android:color/holo_blue_bright"
             app:circle_end_color="@android:color/holo_blue_dark"
             app:dots_primary_color="@android:color/holo_blue_light"
