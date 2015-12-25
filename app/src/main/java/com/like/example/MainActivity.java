@@ -38,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements OnLikeListener {
         setSupportActionBar(toolbar);
 
         starButton.setOnLikeListener(this);
+        likeButton.setOnLikeListener(this);
+        smileButton.setOnLikeListener(this);
+        thumbButton.setOnLikeListener(this);
 
         usingCustomIcons();
 
