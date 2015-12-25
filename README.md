@@ -239,7 +239,7 @@ https://dribbble.com/shots/2416983-Twitter-Heart-Animation
 
 
 # Contribution
-------------
+
 
 Please fork repository and contribute using pull requests.
 
@@ -247,7 +247,6 @@ Any contributions, large or small, major features, bug fixes, additional languag
 
 
 # License
---------
 
     Copyright 2015 Joel Dean
 
