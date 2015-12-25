@@ -27,7 +27,7 @@ Like Button is a library that allows you to create a button with animation effec
 7. [Circle Color Config](https://github.com/jd-alexander/LikeButton#circle-color-config)
    1. [XML](https://github.com/jd-alexander/LikeButton#circle-color-config-xml)
    2. [Java](https://github.com/jd-alexander/LikeButton#circle-color-config-java)
-8. [Exploding Dots Color Config](https://github.com/jd-alexander/LikeButton#dots-color-config)
+8. [Dots Color Config](https://github.com/jd-alexander/LikeButton#dots-color-config)
    1. [XML](https://github.com/jd-alexander/LikeButton#dots-color-config-xml)
    2. [Java](https://github.com/jd-alexander/LikeButton#dots-color-config-java)
 9. [Inspiration](https://github.com/jd-alexander/LikeButton#inspiration)
@@ -190,3 +190,75 @@ likeButton.setUnlikeDrawable(heart_off);
 likeButton.setUnlikeDrawableRes(R.drawable.heart_off);
 likeButton.setLikeDrawableRes(R.drawable.heart_on);
 ```
+---
+
+# Circle Color Config
+
+If you watch the animation closely you will notice that there's a circle that begins from the center of the icon and and then it animates away from the center before the exploding dots animate. These colours can be changed to suit the theme of your icon.
+
+#### XML
+
+```
+app:circle_start_color="@color/colorPrimary"
+app:circle_end_color="@color/colorAccent"
+```
+
+#### Java
+
+```java
+likeButton.setCircleEndColorRes(R.color.colorAccent);
+likeButton.setCircleEndColorRes(R.color.colorPrimary);
+```
+---
+
+# Dots Color Config
+
+The dots that represent the outer animation can be coloured also.
+
+#### XML
+
+```
+app:dots_primary_color="@color/colorAccent"
+app:dots_secondary_color="@color/colorPrimary"
+```
+
+#### Java
+
+```
+likeButton.setExplodingDotColorsRes(R.color.colorPrimary,R.color.colorAccent);
+```
+---
+
+# Inpsiration
+
+This library was made by possible based on code and design inspiration from these sources:
+https://github.com/frogermcs/LikeAnimation
+https://github.com/lightsmeki/android_twitter_heart_animation_button
+https://dribbble.com/shots/2416983-Twitter-Heart-Animation
+
+
+
+# Contribution
+------------
+
+Please fork repository and contribute using pull requests.
+
+Any contributions, large or small, major features, bug fixes, additional language translations, unit/integration tests are welcomed and appreciated but will be thoroughly reviewed and discussed.
+
+
+# License
+--------
+
+    Copyright 2015 Joel Dean
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
