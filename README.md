@@ -13,7 +13,7 @@ Like Button is a library that allows you to create a button with animation effec
 # Gradle Dependency
 
 [ ![JitPack](https://img.shields.io/github/release/jd-alexander/likebutton.svg?label=jitpack) ](https://jitpack.io/#jd-alexander/likebutton)
-[![Build Status](https://travis-ci.org/jd-alexander/likebutton.svg)](https://travis-ci.org/jd-alexander/likebutton)
+[![Build Status](https://travis-ci.org/jd-alexander/LikeButton.svg)](https://travis-ci.org/jd-alexander/LikeButton)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 #### Repository
@@ -36,7 +36,7 @@ Add this to your module's `build.gradle` file:
 ```gradle
 dependencies {
 	...
-	compile 'com.github.jd-alexander:LikeButton:0.1.0'
+	compile 'com.github.jd-alexander:LikeButton:0.1.1'
 	}
 }
 ```
