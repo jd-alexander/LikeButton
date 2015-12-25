@@ -8,10 +8,14 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.support.annotation.ColorInt;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Property;
 import android.view.View;
+
+/**
+ * Created by Miroslaw Stanek on 21.12.2015.
+ * Modified by Joel Dean
+ */
 
 public class CircleView extends View {
     private int START_COLOR = 0xFFFF5722;
