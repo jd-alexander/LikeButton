@@ -12,7 +12,7 @@ Like Button is a library that allows you to create a button with animation effec
    1. [Repository](https://github.com/jd-alexander/LikeButton#repository)
    2. [Dependency](https://github.com/jd-alexander/LikeButton#dependency)
 2. [Basic Usage](https://github.com/jd-alexander/LikeButton#basic-usage)
-   1. [Like Button XML](https://github.com/jd-alexander/LikeButton#like-button)
+   1. [Like Button XML](https://github.com/jd-alexander/LikeButton#like-button-xml)
    2. [Attributes](https://github.com/jd-alexander/LikeButton#attributes)
 3. [Like Event Listener](https://github.com/jd-alexander/LikeButton#like-listener)
 4. [Icon Types](https://github.com/jd-alexander/LikeButton#icon-types)
@@ -66,3 +66,34 @@ dependencies {
 ```
 
 ---
+
+#Basic Usage
+
+#### Like Button XML
+
+To use this like button in your layout simply copy and paste the xml below. This provides the default heart button. 
+
+```
+<com.like.LikeButton
+            app:icon_type="star"
+            app:icon_size="25dp"
+            android:id="@+id/star_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+```
+
+#### Attributes
+
+There are several other attributes that can be used to configure the button's behaviour and appearance. They are shown below and will be explained in the sections that follow long with their java counterparts.
+
+```
+app:icon_type="star"
+app:circle_start_color="@color/colorPrimary"
+app:like_drawable="@drawable/thumb_on"
+app:unlike_drawable="@drawable/thumb_off"
+app:dots_primary_color="@color/colorAccent"
+app:dots_secondary_color="@color/colorPrimary"
+app:circle_end_color="@color/colorAccent"
+app:icon_size="25dp"
+
+```
