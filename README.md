@@ -143,7 +143,50 @@ app:icon_type="heart"
 If you would like to set the icon via Java then simply call the set icon method on the button. 
 
 ```java
+
 likeButton.setIcon(IconType.Star);
 ```
+---
 
+# Icon Size
 
+#### XML
+
+To set the icon size via xml simply use this attribute
+
+```xml
+app:icon_size="20dp"
+```
+
+#### Java
+
+If you are doing it programmatically you can set it with either the method for pixels or dp. 
+
+```java
+likeButton.setIconSizePx(40);
+likeButton.setIconSizeDp(20);
+```
+Note, it's very important that the size of the button is set even if you are planning to use custom drawables as described below as the library uses this value to determine the width and height of the effects that occur when the button is tapped.
+
+---
+
+# Custom Icons
+
+#### XML
+
+In order to use custom icons instead of the ones bundled with the library you simply set the drawables that represent the liked and unliked state of the button.
+
+```
+app:like_drawable="@drawable/thumb_on"
+app:unlike_drawable="@drawable/thumb_off"
+```
+
+#### Java
+
+```java
+likeButton.setLikeDrawable(heart_on);
+likeButton.setUnlikeDrawable(heart_off);
+
+likeButton.setUnlikeDrawableRes(R.drawable.heart_off);
+likeButton.setLikeDrawableRes(R.drawable.heart_on);
+```
