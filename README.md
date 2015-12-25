@@ -222,6 +222,7 @@ likeButton.setExplodingDotColorsRes(R.color.colorPrimary,R.color.colorAccent);
 # Inspiration
 
 This library was made by possible based on code and design inspiration from these sources:
+
 https://github.com/frogermcs/LikeAnimation
 https://github.com/lightsmeki/android_twitter_heart_animation_button
 https://dribbble.com/shots/2416983-Twitter-Heart-Animation
