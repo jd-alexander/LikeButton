@@ -73,7 +73,7 @@ dependencies {
 
 To use this like button in your layout simply copy and paste the xml below. This provides the default heart button. 
 
-```
+```xml
 <com.like.LikeButton
             app:icon_type="star"
             app:icon_size="25dp"
@@ -86,7 +86,7 @@ To use this like button in your layout simply copy and paste the xml below. This
 
 There are several other attributes that can be used to configure the button's behaviour and appearance. They are shown below and will be explained in the sections that follow long with their java counterparts.
 
-```
+```xml
 app:icon_type="star"
 app:circle_start_color="@color/colorPrimary"
 app:like_drawable="@drawable/thumb_on"
