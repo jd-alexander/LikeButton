@@ -14,7 +14,7 @@ Like Button is a library that allows you to create a button with animation effec
 2. [Basic Usage](https://github.com/jd-alexander/LikeButton#basic-usage)
    1. [Like Button XML](https://github.com/jd-alexander/LikeButton#like-button-xml)
    2. [Attributes](https://github.com/jd-alexander/LikeButton#attributes)
-3. [Like Event Listener](https://github.com/jd-alexander/LikeButton#like-listener)
+3. [Like Event Listener](https://github.com/jd-alexander/LikeButton#like-event-listener)
 4. [Icon Types](https://github.com/jd-alexander/LikeButton#icon-types)
    1. [XML](https://github.com/jd-alexander/LikeButton#icon-types-xml)
    2. [Java](https://github.com/jd-alexander/LikeButton#icon-types-java)
@@ -67,7 +67,7 @@ dependencies {
 
 ---
 
-#Basic Usage
+# Basic Usage
 
 #### Like Button XML
 
@@ -87,6 +87,7 @@ To use this like button in your layout simply copy and paste the xml below. This
 There are several other attributes that can be used to configure the button's behaviour and appearance. They are shown below and will be explained in the sections that follow long with their java counterparts.
 
 ```xml
+<com.like.LikeButton
 app:icon_type="star"
 app:circle_start_color="@color/colorPrimary"
 app:like_drawable="@drawable/thumb_on"
@@ -95,5 +96,51 @@ app:dots_primary_color="@color/colorAccent"
 app:dots_secondary_color="@color/colorPrimary"
 app:circle_end_color="@color/colorAccent"
 app:icon_size="25dp"
+/>
 
 ```
+---
+
+# Like Event Listener
+
+To listen to events from your like button, simply implement the listener that's triggered once the button is tapped.
+
+```java
+
+likeButton.setOnLikeListener(new OnLikeListener() {
+            @Override
+            public void liked() {
+
+            }
+
+            @Override
+            public void unLiked() {
+
+            }
+        });
+
+```
+
+---
+
+#Icon Types
+
+The libary is bundled with three icons that you can use. A heart,thumb and a star. 
+
+#### XML
+
+To set the respective icon via xml simply use the word in the icon type attribute.
+
+```
+app:icon_type="heart"
+```
+
+#### Java
+
+If you would like to set the icon via Java then simply call the set icon method on the button. 
+
+```java
+likeButton.setIcon(IconType.Star);
+```
+
+
