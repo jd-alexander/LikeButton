@@ -89,7 +89,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         unLikeDrawable = array.getDrawable(R.styleable.LikeButton_unlike_drawable);
 
         if(unLikeDrawable !=null)
-            setUnLikeDrawable(unLikeDrawable);
+            setUnlikeDrawable(unLikeDrawable);
 
         if (iconType != null)
             if (!iconType.isEmpty())
@@ -292,7 +292,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
      * This drawable will be shown when the button is in on unLiked state.
      * @param unLikeDrawable
      */
-    public void setUnLikeDrawable(Drawable unLikeDrawable) {
+    public void setUnlikeDrawable(Drawable unLikeDrawable) {
 
         this.unLikeDrawable = unLikeDrawable;
 
