@@ -45,7 +45,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     private AnimatorSet animatorSet;
 
     private Drawable likeDrawable;
-    private Drawable unlikeDrawable;
+    private Drawable unLikeDrawable;
 
     public LikeButton(Context context) {
         this(context, null);
@@ -86,10 +86,10 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         if(likeDrawable!=null)
             setLikeDrawable(likeDrawable);
 
-        unlikeDrawable = array.getDrawable(R.styleable.LikeButton_unlike_drawable);
+        unLikeDrawable = array.getDrawable(R.styleable.LikeButton_unlike_drawable);
 
-        if(unlikeDrawable!=null)
-            setUnlikeDrawable(unlikeDrawable);
+        if(unLikeDrawable !=null)
+            setUnLikeDrawable(unLikeDrawable);
 
         if (iconType != null)
             if (!iconType.isEmpty())
@@ -114,7 +114,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         }
 
 
-        if (likeDrawable == null && unlikeDrawable == null) {
+        if (likeDrawable == null && unLikeDrawable == null) {
             if (currentIcon != null) {
 
                 setLikeDrawableRes(currentIcon.getOnIconResourceId());
@@ -127,10 +127,11 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
             }
         }
 
-        array.recycle();
-        icon.setImageDrawable(unlikeDrawable);
+        Boolean status = array.getBoolean(R.styleable.LikeButton_liked,false);
+        setLiked(status);
         setEffectsViewSize();
         setOnClickListener(this);
+        array.recycle();
     }
 
     /**
@@ -142,7 +143,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     public void onClick(View v) {
         isChecked = !isChecked;
 
-        icon.setImageDrawable(isChecked ? likeDrawable : unlikeDrawable);
+        icon.setImageDrawable(isChecked ? likeDrawable : unLikeDrawable);
 
         if (likeListener != null) {
             if (isChecked) {
@@ -279,26 +280,26 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
      * @param resId
      */
     public void setUnlikeDrawableRes(@DrawableRes int resId) {
-        unlikeDrawable = ContextCompat.getDrawable(getContext(), resId);
+        unLikeDrawable = ContextCompat.getDrawable(getContext(), resId);
 
         if (iconSize != 0) {
-            unlikeDrawable = Utils.resizeDrawable(getContext(), unlikeDrawable, iconSize, iconSize);
+            unLikeDrawable = Utils.resizeDrawable(getContext(), unLikeDrawable, iconSize, iconSize);
         }
-        icon.setImageDrawable(unlikeDrawable);
+        icon.setImageDrawable(unLikeDrawable);
     }
 
     /**
      * This drawable will be shown when the button is in on unLiked state.
-     * @param unlikeDrawable
+     * @param unLikeDrawable
      */
-    public void setUnlikeDrawable(Drawable unlikeDrawable) {
+    public void setUnLikeDrawable(Drawable unLikeDrawable) {
 
-        this.unlikeDrawable = unlikeDrawable;
+        this.unLikeDrawable = unLikeDrawable;
 
         if (iconSize != 0) {
-            this.unlikeDrawable = Utils.resizeDrawable(getContext(), unlikeDrawable, iconSize, iconSize);
+            this.unLikeDrawable = Utils.resizeDrawable(getContext(), unLikeDrawable, iconSize, iconSize);
         }
-        icon.setImageDrawable(unlikeDrawable);
+        icon.setImageDrawable(unLikeDrawable);
 
 
     }
@@ -331,7 +332,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     public void setIconSizePx(int iconSize) {
         this.iconSize = iconSize;
         setEffectsViewSize();
-        this.unlikeDrawable = Utils.resizeDrawable(getContext(), unlikeDrawable, iconSize, iconSize);
+        this.unLikeDrawable = Utils.resizeDrawable(getContext(), unLikeDrawable, iconSize, iconSize);
         this.likeDrawable = Utils.resizeDrawable(getContext(), likeDrawable, iconSize, iconSize);
     }
 
@@ -415,6 +416,25 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         if (iconSize != 0) {
             dotsView.setSize(iconSize * 3, iconSize * 3);
             circleView.setSize(iconSize, iconSize);
+        }
+    }
+
+    /**
+     * Sets the initial state of the button to liked
+     * or unliked.
+     * @param status
+     */
+    public void setLiked(Boolean status)
+    {
+        if(status)
+        {
+            isChecked=true;
+            icon.setImageDrawable(likeDrawable);
+        }
+        else
+        {
+            isChecked=false;
+            icon.setImageDrawable(unLikeDrawable);
         }
     }
 }
