@@ -56,7 +56,7 @@ Add this to your module's `build.gradle` file:
 ```gradle
 dependencies {
 	...
-	compile 'com.github.jd-alexander:LikeButton:0.1.2'
+	compile 'com.github.jd-alexander:LikeButton:0.1.3'
 	}
 }
 ```
