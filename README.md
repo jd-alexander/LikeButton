@@ -92,6 +92,7 @@ app:dots_primary_color="@color/colorAccent"
 app:dots_secondary_color="@color/colorPrimary"
 app:circle_end_color="@color/colorAccent"
 app:icon_size="25dp"
+app:liked="true"
 />
 
 ```
