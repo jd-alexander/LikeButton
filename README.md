@@ -109,7 +109,6 @@ app:liked="true"
 
 #### Java
 
-If you would like to set the icon via Java then simply call the set icon method on the button. 
 
 ```java
 
