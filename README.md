@@ -1,4 +1,9 @@
-# Like Button
+# Like Button 
+
+[ ![JitPack](https://img.shields.io/github/release/jd-alexander/likebutton.svg?label=jitpack) ](https://jitpack.io/#jd-alexander/likebutton)
+[![Build Status](https://travis-ci.org/jd-alexander/LikeButton.svg)](https://travis-ci.org/jd-alexander/LikeButton)
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
+
 
 Like Button is a library that allows you to create a button with animation effects similar to [Twitter's heart](https://dribbble.com/shots/2416983-Twitter-Heart-Animation) when you like something.
 
@@ -29,9 +34,6 @@ Like Button is a library that allows you to create a button with animation effec
 
 # Gradle Dependency
 
-[ ![JitPack](https://img.shields.io/github/release/jd-alexander/likebutton.svg?label=jitpack) ](https://jitpack.io/#jd-alexander/likebutton)
-[![Build Status](https://travis-ci.org/jd-alexander/LikeButton.svg)](https://travis-ci.org/jd-alexander/LikeButton)
-[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 #### Repository
 
@@ -68,7 +70,7 @@ To use this like button in your layout simply copy and paste the xml below. This
 
 ```xml
 <com.like.LikeButton
-            app:icon_type="star"
+            app:icon_type="heart"
             app:icon_size="25dp"
             android:id="@+id/star_button"
             android:layout_width="wrap_content"
