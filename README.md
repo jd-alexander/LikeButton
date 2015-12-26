@@ -19,15 +19,16 @@ Like Button is a library that allows you to create a button with animation effec
 2. [Basic Usage](https://github.com/jd-alexander/LikeButton#basic-usage)
    1. [Like Button XML](https://github.com/jd-alexander/LikeButton#like-button-xml)
    2. [Attributes](https://github.com/jd-alexander/LikeButton#attributes)
-3. [Like Event Listener](https://github.com/jd-alexander/LikeButton#like-event-listener)
-4. [Icon Types](https://github.com/jd-alexander/LikeButton#icon-types)
-5. [Icon Size](https://github.com/jd-alexander/LikeButton#icon-size)
-6. [Custom Icons](https://github.com/jd-alexander/LikeButton#custom-icons)
-7. [Circle Color Config](https://github.com/jd-alexander/LikeButton#circle-color-config)
-8. [Dots Color Config](https://github.com/jd-alexander/LikeButton#dots-color-config)
-9. [Inspiration](https://github.com/jd-alexander/LikeButton#inspiration)
-10. [Contribution](https://github.com/jd-alexander/LikeButton#contribution)
-11. [License](https://github.com/jd-alexander/LikeButton#license)
+3. [Button State](https://github.com/jd-alexander/LikeButton#button-state)
+4. [Like Event Listener](https://github.com/jd-alexander/LikeButton#like-event-listener)
+5. [Icon Types](https://github.com/jd-alexander/LikeButton#icon-types)
+6. [Icon Size](https://github.com/jd-alexander/LikeButton#icon-size)
+7. [Custom Icons](https://github.com/jd-alexander/LikeButton#custom-icons)
+8. [Circle Color Config](https://github.com/jd-alexander/LikeButton#circle-color-config)
+9. [Dots Color Config](https://github.com/jd-alexander/LikeButton#dots-color-config)
+10. [Inspiration](https://github.com/jd-alexander/LikeButton#inspiration)
+11. [Contribution](https://github.com/jd-alexander/LikeButton#contribution)
+12. [License](https://github.com/jd-alexander/LikeButton#license)
 
    
 ---
@@ -93,6 +94,26 @@ app:circle_end_color="@color/colorAccent"
 app:icon_size="25dp"
 />
 
+```
+---
+
+# Button State
+
+To set the inital state of the button you simply use the setLiked functionality via XML or Java. This will show the button in the liked state with the drawable that you selected etc. 
+
+#### XML
+
+```
+app:liked="true"
+```
+
+#### Java
+
+If you would like to set the icon via Java then simply call the set icon method on the button. 
+
+```java
+
+likeButton.setLiked(true);
 ```
 ---
 
