@@ -56,7 +56,7 @@ Add this to your module's `build.gradle` file:
 ```gradle
 dependencies {
 	...
-	compile 'com.github.jd-alexander:LikeButton:0.1.3'
+	compile 'com.github.jd-alexander:LikeButton:0.1.4'
 	}
 }
 ```
@@ -125,12 +125,12 @@ To listen to events from your like button, simply implement the listener that's 
 
 likeButton.setOnLikeListener(new OnLikeListener() {
             @Override
-            public void liked() {
+            public void liked(LikeButton likeButton) {
 
             }
 
             @Override
-            public void unLiked() {
+            public void unLiked(LikeButton likeButton) {
 
             }
         });
