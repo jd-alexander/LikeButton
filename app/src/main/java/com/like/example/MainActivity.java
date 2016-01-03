@@ -80,12 +80,12 @@ public class MainActivity extends AppCompatActivity implements OnLikeListener {
     }
 
     @Override
-    public void liked() {
+    public void liked(LikeButton likeButton) {
         Toast.makeText(this, "Liked!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void unLiked() {
+    public void unLiked(LikeButton likeButton) {
         Toast.makeText(this, "Disliked!", Toast.LENGTH_SHORT).show();
     }
 }

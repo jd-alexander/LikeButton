@@ -147,9 +147,9 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
 
         if (likeListener != null) {
             if (isChecked) {
-                likeListener.liked();
+                likeListener.liked(this);
             } else {
-                likeListener.unLiked();
+                likeListener.unLiked(this);
             }
         }
 
