@@ -10,5 +10,6 @@
         <attr name="circle_start_color" format="color|reference" />
         <attr name="circle_end_color" format="color|reference" />
         <attr name="liked" format="boolean"/>
+        <attr name="enabled" format="boolean"/>
     </declare-styleable>
 </resources>

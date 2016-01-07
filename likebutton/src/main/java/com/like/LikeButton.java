@@ -42,6 +42,9 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     private int iconSize;
 
     private boolean isChecked;
+
+
+    private boolean isEnabled;
     private AnimatorSet animatorSet;
 
     private Drawable likeDrawable;
@@ -127,6 +130,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
             }
         }
 
+        setEnabled(array.getBoolean(R.styleable.LikeButton_enabled,true));
         Boolean status = array.getBoolean(R.styleable.LikeButton_liked,false);
         setLiked(status);
         setEffectsViewSize();
@@ -141,6 +145,10 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
      */
     @Override
     public void onClick(View v) {
+
+        if(!isEnabled)
+            return;
+
         isChecked = !isChecked;
 
         icon.setImageDrawable(isChecked ? likeDrawable : unLikeDrawable);
@@ -222,6 +230,9 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
      */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if(!isEnabled)
+            return true;
+
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 icon.animate().scaleX(0.7f).scaleY(0.7f).setDuration(150).setInterpolator(DECCELERATE_INTERPOLATOR);
@@ -436,5 +447,10 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
             isChecked=false;
             icon.setImageDrawable(unLikeDrawable);
         }
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
     }
 }
