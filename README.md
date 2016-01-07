@@ -100,7 +100,7 @@ app:liked="true"
 
 # Button State
 
-To set the inital state of the button you simply use the setLiked functionality via XML or Java. This will show the button in the liked state with the drawable that you selected etc. 
+To set the inital liked state of the button you simply use the setLiked functionality via XML or Java. This will show the button in the liked state with the drawable that you selected.
 
 #### XML
 
@@ -115,6 +115,25 @@ app:liked="true"
 
 likeButton.setLiked(true);
 ```
+
+You can also set if the button is to be enabled or disabled. Once disabled, the animation, listener or any other functionality of the button won't be triggered.
+
+#### XML
+
+```
+app:enabled="false"
+```
+
+#### Java
+
+
+```java
+
+likeButton.setEnabled(false);
+```
+
+
+
 ---
 
 # Like Event Listener
