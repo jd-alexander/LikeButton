@@ -26,9 +26,10 @@ Like Button is a library that allows you to create a button with animation effec
 7. [Custom Icons](https://github.com/jd-alexander/LikeButton#custom-icons)
 8. [Circle Color Config](https://github.com/jd-alexander/LikeButton#circle-color-config)
 9. [Dots Color Config](https://github.com/jd-alexander/LikeButton#dots-color-config)
-10. [Inspiration](https://github.com/jd-alexander/LikeButton#inspiration)
-11. [Contribution](https://github.com/jd-alexander/LikeButton#contribution)
-12. [License](https://github.com/jd-alexander/LikeButton#license)
+10. [Animation Size](https://github.com/jd-alexander/LikeButton#animation-size)
+11. [Inspiration](https://github.com/jd-alexander/LikeButton#inspiration)
+12. [Contribution](https://github.com/jd-alexander/LikeButton#contribution)
+13. [License](https://github.com/jd-alexander/LikeButton#license)
 
    
 ---
@@ -56,7 +57,7 @@ Add this to your module's `build.gradle` file:
 ```gradle
 dependencies {
 	...
-	compile 'com.github.jd-alexander:LikeButton:0.1.5'
+	compile 'com.github.jd-alexander:LikeButton:0.1.6'
 	}
 }
 ```
@@ -93,6 +94,8 @@ app:dots_secondary_color="@color/colorPrimary"
 app:circle_end_color="@color/colorAccent"
 app:icon_size="25dp"
 app:liked="true"
+app:anim_scale_factor="2"
+app:enabled="false"
 />
 
 ```
@@ -260,6 +263,26 @@ app:dots_secondary_color="@color/colorPrimary"
 likeButton.setExplodingDotColorsRes(R.color.colorPrimary,R.color.colorAccent);
 ```
 ---
+
+
+# Animation Size
+
+To change the size of the dots that also contributes to the size of the overall like button view you can use the animation scale factor attribute via XML or it's Java equivalent
+
+#### XML
+
+```
+app:anim_scale_factor="2.5"
+
+```
+
+#### Java
+
+```
+likeButton.setAnimationScaleFactor(2);
+```
+---
+
 
 # Inspiration
 
