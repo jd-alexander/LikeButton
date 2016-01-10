@@ -457,6 +457,9 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         isEnabled = enabled;
     }
 
+    /**
+     *Sets the factor by which the dots should be sized.
+     */
     public void setAnimationScaleFactor(float animationScaleFactor) {
         this.animationScaleFactor = animationScaleFactor;
 
