@@ -41,6 +41,9 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     private int circleEndColor;
     private int iconSize;
 
+
+    private float animationScaleFactor;
+
     private boolean isChecked;
 
 
@@ -132,8 +135,8 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
 
         setEnabled(array.getBoolean(R.styleable.LikeButton_enabled,true));
         Boolean status = array.getBoolean(R.styleable.LikeButton_liked,false);
+        setAnimationScaleFactor(array.getFloat(R.styleable.LikeButton_anim_scale_factor,3));
         setLiked(status);
-        setEffectsViewSize();
         setOnClickListener(this);
         array.recycle();
     }
@@ -423,9 +426,9 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
      * view with the respective sizes based on the size
      * of the icon being used.
      */
-    public void setEffectsViewSize() {
+    private void setEffectsViewSize() {
         if (iconSize != 0) {
-            dotsView.setSize(iconSize * 3, iconSize * 3);
+            dotsView.setSize((int)(iconSize * animationScaleFactor), (int)(iconSize * animationScaleFactor));
             circleView.setSize(iconSize, iconSize);
         }
     }
@@ -453,4 +456,11 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     public void setEnabled(boolean enabled) {
         isEnabled = enabled;
     }
+
+    public void setAnimationScaleFactor(float animationScaleFactor) {
+        this.animationScaleFactor = animationScaleFactor;
+
+        setEffectsViewSize();
+    }
+
 }

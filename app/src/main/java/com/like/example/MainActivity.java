@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements OnLikeListener {
 
         //shown when the button is liked!
         smileButton.setLikeDrawable(new BitmapDrawable(getResources(), new IconicsDrawable(this, CommunityMaterial.Icon.cmd_emoticon).colorRes(android.R.color.holo_purple).sizeDp(25).toBitmap()));
-
     }
 
     @Override
