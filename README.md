@@ -3,6 +3,7 @@
 [ ![JitPack](https://img.shields.io/github/release/jd-alexander/likebutton.svg?label=jitpack) ](https://jitpack.io/#jd-alexander/likebutton)
 [![Build Status](https://travis-ci.org/jd-alexander/LikeButton.svg)](https://travis-ci.org/jd-alexander/LikeButton)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-LikeButton-green.svg?style=true)](https://android-arsenal.com/details/1/3038)
 
 
 Like Button is a library that allows you to create a button with animation effects similar to [Twitter's heart](https://dribbble.com/shots/2416983-Twitter-Heart-Animation) when you like something.
