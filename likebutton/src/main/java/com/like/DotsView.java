@@ -121,8 +121,9 @@ public class DotsView extends View {
         } else {
             this.currentRadius2 = maxInnerDotsRadius;
         }
-
-        if (currentProgress < 0.2) {
+        if (currentProgress == 0) {
+            this.currentDotSize2 = 0;
+        } else if (currentProgress < 0.2) {
             this.currentDotSize2 = maxDotSize;
         } else if (currentProgress < 0.5) {
             this.currentDotSize2 = (float) Utils.mapValueFromRangeToRange(currentProgress, 0.2f, 0.5f, maxDotSize, 0.3 * maxDotSize);
@@ -138,8 +139,9 @@ public class DotsView extends View {
         } else {
             this.currentRadius1 = (float) Utils.mapValueFromRangeToRange(currentProgress, 0.3f, 1f, 0.8f * maxOuterDotsRadius, maxOuterDotsRadius);
         }
-
-        if (currentProgress < 0.7) {
+        if (currentProgress == 0) {
+            this.currentDotSize1 = 0;
+        } else if (currentProgress < 0.7) {
             this.currentDotSize1 = maxDotSize;
         } else {
             this.currentDotSize1 = (float) Utils.mapValueFromRangeToRange(currentProgress, 0.7f, 1f, maxDotSize, 0);
