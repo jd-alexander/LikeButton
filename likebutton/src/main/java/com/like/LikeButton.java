@@ -87,12 +87,12 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
 
         String iconType = array.getString(R.styleable.LikeButton_icon_type);
 
-        likeDrawable = array.getDrawable(R.styleable.LikeButton_like_drawable);
+        likeDrawable = getDrawableFromResource(array, R.styleable.LikeButton_like_drawable);
 
         if(likeDrawable!=null)
             setLikeDrawable(likeDrawable);
 
-        unLikeDrawable = array.getDrawable(R.styleable.LikeButton_unlike_drawable);
+        unLikeDrawable = getDrawableFromResource(array, R.styleable.LikeButton_unlike_drawable);
 
         if(unLikeDrawable !=null)
             setUnlikeDrawable(unLikeDrawable);
@@ -139,6 +139,13 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         setLiked(status);
         setOnClickListener(this);
         array.recycle();
+    }
+
+    private Drawable getDrawableFromResource(TypedArray array, int styleableIndexId)
+    {
+        int id = array.getResourceId(styleableIndexId, -1);
+
+        return (-1 != id) ? ContextCompat.getDrawable(getContext(), id) : null;
     }
 
     /**
