@@ -133,7 +133,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
             }
         }
 
-        setEnabled(array.getBoolean(R.styleable.LikeButton_enabled,true));
+        setEnabled(array.getBoolean(R.styleable.LikeButton_is_enabled,true));
         Boolean status = array.getBoolean(R.styleable.LikeButton_liked,false);
         setAnimationScaleFactor(array.getFloat(R.styleable.LikeButton_anim_scale_factor,3));
         setLiked(status);
@@ -245,7 +245,12 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                /*
+                Commented out this line and moved the animation effect to the action up event due to
+                conflicts that were occurring when library is used in sliding type views.
+
                 icon.animate().scaleX(0.7f).scaleY(0.7f).setDuration(150).setInterpolator(DECCELERATE_INTERPOLATOR);
+                */
                 setPressed(true);
                 break;
 
@@ -259,6 +264,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
                 break;
 
             case MotionEvent.ACTION_UP:
+                icon.animate().scaleX(0.7f).scaleY(0.7f).setDuration(150).setInterpolator(DECCELERATE_INTERPOLATOR);
                 icon.animate().scaleX(1).scaleY(1).setInterpolator(DECCELERATE_INTERPOLATOR);
                 if (isPressed()) {
                     performClick();
