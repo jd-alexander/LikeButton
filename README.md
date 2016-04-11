@@ -96,7 +96,7 @@ app:circle_end_color="@color/colorAccent"
 app:icon_size="25dp"
 app:liked="true"
 app:anim_scale_factor="2"
-app:enabled="false"
+app:is_enabled="false"
 />
 
 ```
@@ -125,7 +125,7 @@ You can also set if the button is to be enabled or disabled. Once disabled, the 
 #### XML
 
 ```
-app:enabled="false"
+app:is_enabled="false"
 ```
 
 #### Java
