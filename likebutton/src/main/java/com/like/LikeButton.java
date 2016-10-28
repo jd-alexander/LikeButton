@@ -465,6 +465,15 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         }
     }
 
+    /**
+     * Returns current like state
+     * @return current like state
+     */
+    public boolean isLiked()
+    {
+        return isChecked;
+    }
+
     @Override
     public void setEnabled(boolean enabled) {
         isEnabled = enabled;
