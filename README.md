@@ -86,7 +86,7 @@ There are several other attributes that can be used to configure the button's be
 
 ```xml
 <com.like.LikeButton
-app:icon_type="star"
+app:icon_type="Star"
 app:circle_start_color="@color/colorPrimary"
 app:like_drawable="@drawable/thumb_on"
 app:unlike_drawable="@drawable/thumb_off"
