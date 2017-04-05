@@ -69,6 +69,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     /**
      * Does all the initial setup of the button such as retrieving all the attributes that were
      * set in xml and inflating the like button's view and initial state.
+     *
      * @param context
      * @param attrs
      * @param defStyle
@@ -89,12 +90,12 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
 
         likeDrawable = getDrawableFromResource(array, R.styleable.LikeButton_like_drawable);
 
-        if(likeDrawable!=null)
+        if (likeDrawable != null)
             setLikeDrawable(likeDrawable);
 
         unLikeDrawable = getDrawableFromResource(array, R.styleable.LikeButton_unlike_drawable);
 
-        if(unLikeDrawable !=null)
+        if (unLikeDrawable != null)
             setUnlikeDrawable(unLikeDrawable);
 
         if (iconType != null)
@@ -122,27 +123,21 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
 
         if (likeDrawable == null && unLikeDrawable == null) {
             if (currentIcon != null) {
-
-                setLikeDrawableRes(currentIcon.getOnIconResourceId());
-                setUnlikeDrawableRes(currentIcon.getOffIconResourceId());
+                setIcon();
             } else {
-                currentIcon = parseIconType(IconType.Heart);
-                setLikeDrawableRes(currentIcon.getOnIconResourceId());
-                setUnlikeDrawableRes(currentIcon.getOffIconResourceId());
-
+                setIcon(IconType.Heart);
             }
         }
 
-        setEnabled(array.getBoolean(R.styleable.LikeButton_is_enabled,true));
-        Boolean status = array.getBoolean(R.styleable.LikeButton_liked,false);
-        setAnimationScaleFactor(array.getFloat(R.styleable.LikeButton_anim_scale_factor,3));
+        setEnabled(array.getBoolean(R.styleable.LikeButton_is_enabled, true));
+        Boolean status = array.getBoolean(R.styleable.LikeButton_liked, false);
+        setAnimationScaleFactor(array.getFloat(R.styleable.LikeButton_anim_scale_factor, 3));
         setLiked(status);
         setOnClickListener(this);
         array.recycle();
     }
 
-    private Drawable getDrawableFromResource(TypedArray array, int styleableIndexId)
-    {
+    private Drawable getDrawableFromResource(TypedArray array, int styleableIndexId) {
         int id = array.getResourceId(styleableIndexId, -1);
 
         return (-1 != id) ? ContextCompat.getDrawable(getContext(), id) : null;
@@ -151,12 +146,13 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     /**
      * This triggers the entire functionality of the button such as icon changes,
      * animations, listeners etc.
+     *
      * @param v
      */
     @Override
     public void onClick(View v) {
 
-        if(!isEnabled)
+        if (!isEnabled)
             return;
 
         isChecked = !isChecked;
@@ -235,12 +231,13 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     /**
      * Used to trigger the scale animation that takes places on the
      * icon when the button is touched.
+     *
      * @param event
      * @return
      */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if(!isEnabled)
+        if (!isEnabled)
             return true;
 
         switch (event.getAction()) {
@@ -275,9 +272,9 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         return true;
     }
 
-
     /**
      * This drawable is shown when the button is a liked state.
+     *
      * @param resId
      */
     public void setLikeDrawableRes(@DrawableRes int resId) {
@@ -286,24 +283,32 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         if (iconSize != 0) {
             likeDrawable = Utils.resizeDrawable(getContext(), likeDrawable, iconSize, iconSize);
         }
+
+        if (isChecked) {
+            icon.setImageDrawable(likeDrawable);
+        }
     }
 
     /**
      * This drawable is shown when the button is in a liked state.
+     *
      * @param likeDrawable
      */
     public void setLikeDrawable(Drawable likeDrawable) {
-
         this.likeDrawable = likeDrawable;
 
         if (iconSize != 0) {
             this.likeDrawable = Utils.resizeDrawable(getContext(), likeDrawable, iconSize, iconSize);
         }
 
+        if (isChecked) {
+            icon.setImageDrawable(this.likeDrawable);
+        }
     }
 
     /**
      * This drawable will be shown when the button is in on unLiked state.
+     *
      * @param resId
      */
     public void setUnlikeDrawableRes(@DrawableRes int resId) {
@@ -312,48 +317,62 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         if (iconSize != 0) {
             unLikeDrawable = Utils.resizeDrawable(getContext(), unLikeDrawable, iconSize, iconSize);
         }
-        icon.setImageDrawable(unLikeDrawable);
+
+        if (!isChecked) {
+            icon.setImageDrawable(unLikeDrawable);
+        }
     }
 
     /**
      * This drawable will be shown when the button is in on unLiked state.
+     *
      * @param unLikeDrawable
      */
     public void setUnlikeDrawable(Drawable unLikeDrawable) {
-
         this.unLikeDrawable = unLikeDrawable;
 
         if (iconSize != 0) {
             this.unLikeDrawable = Utils.resizeDrawable(getContext(), unLikeDrawable, iconSize, iconSize);
         }
-        icon.setImageDrawable(unLikeDrawable);
 
-
+        if (!isChecked) {
+            icon.setImageDrawable(this.unLikeDrawable);
+        }
     }
 
     /**
      * Sets one of the three icons that are bundled with the library.
+     *
      * @param currentIconType
      */
     public void setIcon(IconType currentIconType) {
         currentIcon = parseIconType(currentIconType);
         setLikeDrawableRes(currentIcon.getOnIconResourceId());
         setUnlikeDrawableRes(currentIcon.getOffIconResourceId());
+        icon.setImageDrawable(this.unLikeDrawable);
+    }
+
+    public void setIcon() {
+        setLikeDrawableRes(currentIcon.getOnIconResourceId());
+        setUnlikeDrawableRes(currentIcon.getOffIconResourceId());
+        icon.setImageDrawable(this.unLikeDrawable);
     }
 
     /**
      * Sets the size of the drawable/icon that's being used. The views that generate
      * the like effect are also updated to reflect the size of the icon.
+     *
      * @param iconSize
      */
 
-    public void setIconSizeDp(int iconSize)
-    {
-        setIconSizePx((int)Utils.dipToPixels(getContext(),(float)iconSize));
+    public void setIconSizeDp(int iconSize) {
+        setIconSizePx((int) Utils.dipToPixels(getContext(), (float) iconSize));
     }
+
     /**
      * Sets the size of the drawable/icon that's being used. The views that generate
      * the like effect are also updated to reflect the size of the icon.
+     *
      * @param iconSize
      */
     public void setIconSizePx(int iconSize) {
@@ -369,6 +388,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
      * These icons are bundled with the library and
      * are accessed via objects that contain their
      * resource ids and an enum with their name.
+     *
      * @param iconType
      * @return Icon
      */
@@ -389,6 +409,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
      * These icons are bundled with the library and
      * are accessed via objects that contain their
      * resource ids and an enum with their name.
+     *
      * @param iconType
      * @return
      */
@@ -407,6 +428,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     /**
      * Listener that is triggered once the
      * button is in a liked or unLiked state
+     *
      * @param likeListener
      */
     public void setOnLikeListener(OnLikeListener likeListener) {
@@ -417,21 +439,22 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     /**
      * This set sets the colours that are used for the little dots
      * that will be exploding once the like button is clicked.
+     *
      * @param primaryColor
      * @param secondaryColor
      */
     public void setExplodingDotColorsRes(@ColorRes int primaryColor, @ColorRes int secondaryColor) {
-        dotsView.setColors(ContextCompat.getColor(getContext(),primaryColor), ContextCompat.getColor(getContext(),secondaryColor));
+        dotsView.setColors(ContextCompat.getColor(getContext(), primaryColor), ContextCompat.getColor(getContext(), secondaryColor));
     }
 
     public void setCircleStartColorRes(@ColorRes int circleStartColor) {
         this.circleStartColor = circleStartColor;
-        circleView.setStartColor(ContextCompat.getColor(getContext(),circleStartColor));
+        circleView.setStartColor(ContextCompat.getColor(getContext(), circleStartColor));
     }
 
     public void setCircleEndColorRes(@ColorRes int circleEndColor) {
         this.circleEndColor = circleEndColor;
-        circleView.setEndColor(ContextCompat.getColor(getContext(),circleEndColor));
+        circleView.setEndColor(ContextCompat.getColor(getContext(), circleEndColor));
     }
 
     /**
@@ -441,7 +464,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
      */
     private void setEffectsViewSize() {
         if (iconSize != 0) {
-            dotsView.setSize((int)(iconSize * animationScaleFactor), (int)(iconSize * animationScaleFactor));
+            dotsView.setSize((int) (iconSize * animationScaleFactor), (int) (iconSize * animationScaleFactor));
             circleView.setSize(iconSize, iconSize);
         }
     }
@@ -449,18 +472,15 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     /**
      * Sets the initial state of the button to liked
      * or unliked.
+     *
      * @param status
      */
-    public void setLiked(Boolean status)
-    {
-        if(status)
-        {
-            isChecked=true;
+    public void setLiked(Boolean status) {
+        if (status) {
+            isChecked = true;
             icon.setImageDrawable(likeDrawable);
-        }
-        else
-        {
-            isChecked=false;
+        } else {
+            isChecked = false;
             icon.setImageDrawable(unLikeDrawable);
         }
     }
@@ -480,7 +500,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     }
 
     /**
-     *Sets the factor by which the dots should be sized.
+     * Sets the factor by which the dots should be sized.
      */
     public void setAnimationScaleFactor(float animationScaleFactor) {
         this.animationScaleFactor = animationScaleFactor;
