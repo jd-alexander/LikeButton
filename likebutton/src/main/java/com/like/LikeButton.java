@@ -7,6 +7,7 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.v4.content.ContextCompat;
@@ -447,14 +448,23 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         dotsView.setColors(ContextCompat.getColor(getContext(), primaryColor), ContextCompat.getColor(getContext(), secondaryColor));
     }
 
+    public void setExplodingDotColorsInt(@ColorInt int primaryColor, @ColorInt int secondaryColor) {
+        dotsView.setColors(primaryColor, secondaryColor);
+    }
+
     public void setCircleStartColorRes(@ColorRes int circleStartColor) {
+        this.circleStartColor = ContextCompat.getColor(getContext(), circleStartColor);
+        circleView.setStartColor(this.circleStartColor);
+    }
+
+    public void setCircleStartColorInt(@ColorInt int circleStartColor) {
         this.circleStartColor = circleStartColor;
-        circleView.setStartColor(ContextCompat.getColor(getContext(), circleStartColor));
+        circleView.setStartColor(circleStartColor);
     }
 
     public void setCircleEndColorRes(@ColorRes int circleEndColor) {
-        this.circleEndColor = circleEndColor;
-        circleView.setEndColor(ContextCompat.getColor(getContext(), circleEndColor));
+        this.circleEndColor = ContextCompat.getColor(getContext(), circleEndColor);
+        circleView.setEndColor(this.circleEndColor);
     }
 
     /**
@@ -487,10 +497,10 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
 
     /**
      * Returns current like state
+     *
      * @return current like state
      */
-    public boolean isLiked()
-    {
+    public boolean isLiked() {
         return isChecked;
     }
 
