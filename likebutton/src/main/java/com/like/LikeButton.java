@@ -64,6 +64,8 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
 
     public LikeButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        
+        if(!isInEditMode())
         init(context, attrs, defStyleAttr);
     }
 
