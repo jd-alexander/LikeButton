@@ -4,11 +4,13 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.like.LikeButton;
+import com.like.OnAnimationEndListener;
 import com.like.OnLikeListener;
 import com.mikepenz.community_material_typeface_library.CommunityMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
@@ -16,7 +18,10 @@ import com.mikepenz.iconics.IconicsDrawable;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements OnLikeListener {
+public class MainActivity extends AppCompatActivity implements OnLikeListener,
+    OnAnimationEndListener {
+
+    public static final String TAG = "MainActivity";
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -36,10 +41,17 @@ public class MainActivity extends AppCompatActivity implements OnLikeListener {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
+        starButton.setOnAnimationEndListener(this);
         starButton.setOnLikeListener(this);
+
         likeButton.setOnLikeListener(this);
+        likeButton.setOnAnimationEndListener(this);
+
         smileButton.setOnLikeListener(this);
+        smileButton.setOnAnimationEndListener(this);
+
         thumbButton.setOnLikeListener(this);
+        thumbButton.setOnAnimationEndListener(this);
 
         thumbButton.setLiked(true);
 
@@ -86,5 +98,9 @@ public class MainActivity extends AppCompatActivity implements OnLikeListener {
     @Override
     public void unLiked(LikeButton likeButton) {
         Toast.makeText(this, "Disliked!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override public void onAnimationEnd(LikeButton likeButton) {
+        Log.d(TAG, "Animation End for %s" + likeButton);
     }
 }

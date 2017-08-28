@@ -36,6 +36,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     private CircleView circleView;
     private Icon currentIcon;
     private OnLikeListener likeListener;
+    private OnAnimationEndListener animationEndListener;
     private int dotPrimaryColor;
     private int dotSecondaryColor;
     private int circleStartColor;
@@ -64,7 +65,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
 
     public LikeButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        
+
         if(!isInEditMode())
         init(context, attrs, defStyleAttr);
     }
@@ -224,6 +225,12 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
                     dotsView.setCurrentProgress(0);
                     icon.setScaleX(1);
                     icon.setScaleY(1);
+                }
+
+                @Override public void onAnimationEnd(Animator animation) {
+                    if(animationEndListener != null) {
+                      animationEndListener.onAnimationEnd(LikeButton.this);
+                    }
                 }
             });
 
@@ -436,6 +443,16 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
      */
     public void setOnLikeListener(OnLikeListener likeListener) {
         this.likeListener = likeListener;
+    }
+
+    /**
+     * Listener that is triggered once the
+     * button animation is completed
+     *
+     * @param animationEndListener
+     */
+    public void setOnAnimationEndListener(OnAnimationEndListener animationEndListener) {
+        this.animationEndListener = animationEndListener;
     }
 
 
