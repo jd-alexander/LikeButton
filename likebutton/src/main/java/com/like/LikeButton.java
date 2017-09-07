@@ -278,6 +278,9 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
                     setPressed(false);
                 }
                 break;
+            case MotionEvent.ACTION_CANCEL:
+                setPressed(false);
+                break;
         }
         return true;
     }
