@@ -55,7 +55,9 @@ public class CircleView extends View {
 
     private void init() {
         circlePaint.setStyle(Paint.Style.FILL);
+        circlePaint.setAntiAlias(true);
         maskPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        maskPaint.setAntiAlias(true);
     }
 
     public void setSize(int width, int height) {
@@ -87,7 +89,7 @@ public class CircleView extends View {
         super.onDraw(canvas);
         tempCanvas.drawColor(0xffffff, PorterDuff.Mode.CLEAR);
         tempCanvas.drawCircle(getWidth() / 2, getHeight() / 2, outerCircleRadiusProgress * maxCircleSize, circlePaint);
-        tempCanvas.drawCircle(getWidth() / 2, getHeight() / 2, innerCircleRadiusProgress * maxCircleSize, maskPaint);
+        tempCanvas.drawCircle(getWidth() / 2, getHeight() / 2, innerCircleRadiusProgress * maxCircleSize + 1, maskPaint);
         canvas.drawBitmap(tempBitmap, 0, 0, null);
     }
 
