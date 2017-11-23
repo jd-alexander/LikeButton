@@ -117,7 +117,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
 
 
         if (likeDrawable == null || unLikeDrawable == null) {
-//            throw new RuntimeException("use app:like_drawable & app:unlike_drawable to set drawables");
+            throw new RuntimeException("use app:like_drawable & app:unlike_drawable to set drawables");
         }
 
         setEnabled(array.getBoolean(R.styleable.LikeButton_is_enabled, true));
