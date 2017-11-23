@@ -17,20 +17,22 @@
         android:orientation="horizontal">
 
         <com.like.LikeButton
-            app:liked="true"
             android:id="@+id/star_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:icon_size="22dp"
-            app:icon_type="star" />
+            app:like_drawable="@drawable/star_on"
+            app:liked="true"
+            app:unlike_drawable="@drawable/star_off" />
 
         <com.like.LikeButton
             android:id="@+id/heart_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:icon_size="22dp"
             app:anim_scale_factor="3"
-            app:icon_type="heart" />
+            app:icon_size="22dp"
+            app:like_drawable="@drawable/heart_on"
+            app:unlike_drawable="@drawable/heart_off" />
 
         <com.like.LikeButton
             android:id="@+id/thumb_button"
