@@ -115,11 +115,6 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
             dotsView.setColors(dotPrimaryColor, dotSecondaryColor);
         }
 
-
-        if (likeDrawable == null || unLikeDrawable == null) {
-            throw new RuntimeException("use app:like_drawable & app:unlike_drawable to set drawables");
-        }
-
         setEnabled(array.getBoolean(R.styleable.LikeButton_is_enabled, true));
         Boolean status = array.getBoolean(R.styleable.LikeButton_liked, false);
         setAnimationScaleFactor(array.getFloat(R.styleable.LikeButton_anim_scale_factor, 3));
