@@ -15,7 +15,7 @@ import com.like.OnLikeListener;
 import com.mikepenz.community_material_typeface_library.CommunityMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements OnLikeListener,
@@ -23,15 +23,15 @@ public class MainActivity extends AppCompatActivity implements OnLikeListener,
 
     public static final String TAG = "MainActivity";
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.star_button)
+    @BindView(R.id.star_button)
     LikeButton starButton;
-    @Bind(R.id.heart_button)
+    @BindView(R.id.heart_button)
     LikeButton likeButton;
-    @Bind(R.id.thumb_button)
+    @BindView(R.id.thumb_button)
     LikeButton thumbButton;
-    @Bind(R.id.smile_button)
+    @BindView(R.id.smile_button)
     LikeButton smileButton;
 
     @Override

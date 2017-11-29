@@ -37,8 +37,6 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     private Icon currentIcon;
     private OnLikeListener likeListener;
     private OnAnimationEndListener animationEndListener;
-    private int dotPrimaryColor;
-    private int dotSecondaryColor;
     private int circleStartColor;
     private int circleEndColor;
     private int iconSize;
@@ -80,9 +78,9 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
      */
     private void init(Context context, AttributeSet attrs, int defStyle) {
         LayoutInflater.from(getContext()).inflate(R.layout.likeview, this, true);
-        icon = (ImageView) findViewById(R.id.icon);
-        dotsView = (DotsView) findViewById(R.id.dots);
-        circleView = (CircleView) findViewById(R.id.circle);
+        icon = findViewById(R.id.icon);
+        dotsView = findViewById(R.id.dots);
+        circleView = findViewById(R.id.circle);
 
         final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.LikeButton, defStyle, 0);
 
@@ -117,8 +115,8 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         if (circleEndColor != 0)
             circleView.setEndColor(circleEndColor);
 
-        dotPrimaryColor = array.getColor(R.styleable.LikeButton_dots_primary_color, 0);
-        dotSecondaryColor = array.getColor(R.styleable.LikeButton_dots_secondary_color, 0);
+        int dotPrimaryColor = array.getColor(R.styleable.LikeButton_dots_primary_color, 0);
+        int dotSecondaryColor = array.getColor(R.styleable.LikeButton_dots_secondary_color, 0);
 
         if (dotPrimaryColor != 0 && dotSecondaryColor != 0) {
             dotsView.setColors(dotPrimaryColor, dotSecondaryColor);
