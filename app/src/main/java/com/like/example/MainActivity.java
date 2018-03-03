@@ -1,5 +1,6 @@
 package com.like.example;
 
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import com.mikepenz.iconics.IconicsDrawable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements OnLikeListener,
     OnAnimationEndListener {
@@ -102,5 +104,12 @@ public class MainActivity extends AppCompatActivity implements OnLikeListener,
 
     @Override public void onAnimationEnd(LikeButton likeButton) {
         Log.d(TAG, "Animation End for %s" + likeButton);
+    }
+
+    @OnClick(R.id.button)
+    public void navigateToList()
+    {
+        Intent intent = new Intent(this,ListActivity.class);
+        startActivity(intent);
     }
 }

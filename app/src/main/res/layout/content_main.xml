@@ -66,4 +66,11 @@
             app:like_drawable="@drawable/ic_android_green_500_24dp"
             app:unlike_drawable="@drawable/ic_android_grey_500_24dp" />
     </LinearLayout>
+    <Button
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:text="Navigate to List Example"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
