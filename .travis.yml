@@ -1,6 +1,7 @@
 before_install:
  - chmod +x gradlew
-
+  - yes | sdkmanager "platforms;android-27"
+  
 language: android
 jdk: oraclejdk8
 
