@@ -23,8 +23,6 @@ import android.widget.ImageView;
 
 import com.like.view.R;
 
-import java.util.List;
-
 
 public class LikeButton extends FrameLayout implements View.OnClickListener {
     private static final DecelerateInterpolator DECCELERATE_INTERPOLATOR = new DecelerateInterpolator();
@@ -34,7 +32,6 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     private ImageView icon;
     private DotsView dotsView;
     private CircleView circleView;
-    private Icon currentIcon;
     private OnLikeListener likeListener;
     private OnAnimationEndListener animationEndListener;
     private int circleStartColor;
@@ -64,8 +61,8 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     public LikeButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        if(!isInEditMode())
-        init(context, attrs, defStyleAttr);
+        if (!isInEditMode())
+            init(context, attrs, defStyleAttr);
     }
 
     /**
@@ -88,8 +85,6 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         if (iconSize == -1)
             iconSize = 40;
 
-        String iconType = array.getString(R.styleable.LikeButton_icon_type);
-
         likeDrawable = getDrawableFromResource(array, R.styleable.LikeButton_like_drawable);
 
         if (likeDrawable != null)
@@ -99,10 +94,6 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
 
         if (unLikeDrawable != null)
             setUnlikeDrawable(unLikeDrawable);
-
-        if (iconType != null)
-            if (!iconType.isEmpty())
-                currentIcon = parseIconType(iconType);
 
 
         circleStartColor = array.getColor(R.styleable.LikeButton_circle_start_color, 0);
@@ -120,15 +111,6 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
 
         if (dotPrimaryColor != 0 && dotSecondaryColor != 0) {
             dotsView.setColors(dotPrimaryColor, dotSecondaryColor);
-        }
-
-
-        if (likeDrawable == null && unLikeDrawable == null) {
-            if (currentIcon != null) {
-                setIcon();
-            } else {
-                setIcon(IconType.Heart);
-            }
         }
 
         setEnabled(array.getBoolean(R.styleable.LikeButton_is_enabled, true));
@@ -225,9 +207,10 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
                     icon.setScaleY(1);
                 }
 
-                @Override public void onAnimationEnd(Animator animation) {
-                    if(animationEndListener != null) {
-                      animationEndListener.onAnimationEnd(LikeButton.this);
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    if (animationEndListener != null) {
+                        animationEndListener.onAnimationEnd(LikeButton.this);
                     }
                 }
             });
@@ -352,24 +335,6 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     }
 
     /**
-     * Sets one of the three icons that are bundled with the library.
-     *
-     * @param currentIconType
-     */
-    public void setIcon(IconType currentIconType) {
-        currentIcon = parseIconType(currentIconType);
-        setLikeDrawableRes(currentIcon.getOnIconResourceId());
-        setUnlikeDrawableRes(currentIcon.getOffIconResourceId());
-        icon.setImageDrawable(this.unLikeDrawable);
-    }
-
-    public void setIcon() {
-        setLikeDrawableRes(currentIcon.getOnIconResourceId());
-        setUnlikeDrawableRes(currentIcon.getOffIconResourceId());
-        icon.setImageDrawable(this.unLikeDrawable);
-    }
-
-    /**
      * Sets the size of the drawable/icon that's being used. The views that generate
      * the like effect are also updated to reflect the size of the icon.
      *
@@ -391,49 +356,6 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         setEffectsViewSize();
         this.unLikeDrawable = Utils.resizeDrawable(getContext(), unLikeDrawable, iconSize, iconSize);
         this.likeDrawable = Utils.resizeDrawable(getContext(), likeDrawable, iconSize, iconSize);
-    }
-
-    /**
-     * * Parses the specific icon based on string
-     * version of its enum.
-     * These icons are bundled with the library and
-     * are accessed via objects that contain their
-     * resource ids and an enum with their name.
-     *
-     * @param iconType
-     * @return Icon
-     */
-    private Icon parseIconType(String iconType) {
-        List<Icon> icons = Utils.getIcons();
-
-        for (Icon icon : icons) {
-            if (icon.getIconType().name().toLowerCase().equals(iconType.toLowerCase())) {
-                return icon;
-            }
-        }
-
-        throw new IllegalArgumentException("Correct icon type not specified.");
-    }
-
-    /**
-     * Parses the specific icon based on it's type.
-     * These icons are bundled with the library and
-     * are accessed via objects that contain their
-     * resource ids and an enum with their name.
-     *
-     * @param iconType
-     * @return
-     */
-    private Icon parseIconType(IconType iconType) {
-        List<Icon> icons = Utils.getIcons();
-
-        for (Icon icon : icons) {
-            if (icon.getIconType().equals(iconType)) {
-                return icon;
-            }
-        }
-
-        throw new IllegalArgumentException("Correct icon type not specified.");
     }
 
     /**

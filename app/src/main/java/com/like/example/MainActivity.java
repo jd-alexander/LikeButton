@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements OnLikeListener,
-    OnAnimationEndListener {
+        OnAnimationEndListener {
 
     public static final String TAG = "MainActivity";
 
@@ -102,7 +102,8 @@ public class MainActivity extends AppCompatActivity implements OnLikeListener,
         Toast.makeText(this, "Disliked!", Toast.LENGTH_SHORT).show();
     }
 
-    @Override public void onAnimationEnd(LikeButton likeButton) {
+    @Override
+    public void onAnimationEnd(LikeButton likeButton) {
         Log.d(TAG, "Animation End for %s" + likeButton);
     }
 

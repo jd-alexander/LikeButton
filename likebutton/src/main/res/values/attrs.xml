@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="LikeButton">
-        <attr name="icon_type" format="string" />
-        <attr name="icon_size" format="dimension|reference"/>
+        <attr name="icon_size" format="dimension|reference" />
         <attr name="like_drawable" format="reference" />
         <attr name="unlike_drawable" format="reference" />
         <attr name="dots_primary_color" format="color|reference" />
         <attr name="dots_secondary_color" format="color|reference" />
         <attr name="circle_start_color" format="color|reference" />
         <attr name="circle_end_color" format="color|reference" />
-        <attr name="liked" format="boolean"/>
-        <attr name="is_enabled" format="boolean"/>
-        <attr name="anim_scale_factor" format="float"/>
+        <attr name="liked" format="boolean" />
+        <attr name="is_enabled" format="boolean" />
+        <attr name="anim_scale_factor" format="float" />
     </declare-styleable>
 </resources>
