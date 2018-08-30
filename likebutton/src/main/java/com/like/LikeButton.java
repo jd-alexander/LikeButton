@@ -11,6 +11,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.content.res.AppCompatResources;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -142,7 +143,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     private Drawable getDrawableFromResource(TypedArray array, int styleableIndexId) {
         int id = array.getResourceId(styleableIndexId, -1);
 
-        return (-1 != id) ? ContextCompat.getDrawable(getContext(), id) : null;
+        return (-1 != id) ? AppCompatResources.getDrawable(getContext(), id) : null;
     }
 
     /**
