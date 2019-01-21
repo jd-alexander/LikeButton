@@ -320,7 +320,43 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         }
     }
 
-    private void tintDrawable(Drawable drawable,boolean needTint,@ColorInt int tintColor){
+    public boolean hasLikeDrawableTintColor() {
+        return hasLikeDrawableTintColor;
+    }
+
+    public void setHasLikeDrawableTintColor(boolean hasLikeDrawableTintColor) {
+        this.hasLikeDrawableTintColor = hasLikeDrawableTintColor;
+    }
+
+    public boolean hasUnlikeDrawableTintColor() {
+        return hasUnlikeDrawableTintColor;
+    }
+
+    public void setHasUnlikeDrawableTintColor(boolean hasUnlikeDrawableTintColor) {
+        this.hasUnlikeDrawableTintColor = hasUnlikeDrawableTintColor;
+    }
+
+    public int getLikeDrawableTintColor() {
+        return likeDrawableTintColor;
+    }
+
+    public void setLikeDrawableTintColor(int likeDrawableTintColor) {
+        this.likeDrawableTintColor = likeDrawableTintColor;
+        hasLikeDrawableTintColor = true;
+        tintDrawable(likeDrawable,hasLikeDrawableTintColor,likeDrawableTintColor);
+    }
+
+    public int getUnLikeDrawableTintColor() {
+        return unLikeDrawableTintColor;
+    }
+
+    public void setUnLikeDrawableTintColor(int unLikeDrawableTintColor) {
+        this.unLikeDrawableTintColor = unLikeDrawableTintColor;
+        hasUnlikeDrawableTintColor = true;
+        tintDrawable(unLikeDrawable,hasUnlikeDrawableTintColor,unLikeDrawableTintColor);
+    }
+
+    private void tintDrawable(Drawable drawable, boolean needTint, @ColorInt int tintColor){
     	if(needTint){
 //    	    if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
 //    	        drawable.setTint(tintColor);
