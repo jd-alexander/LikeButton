@@ -63,8 +63,11 @@
             app:dots_primary_color="@android:color/holo_green_dark"
             app:dots_secondary_color="@android:color/holo_green_light"
             app:icon_size="22dp"
+            app:unlike_drawable_tint="#262626"
+            app:like_drawable_tint="#69F0AE"
             app:like_drawable="@drawable/ic_android_green_500_24dp"
             app:unlike_drawable="@drawable/ic_android_grey_500_24dp" />
+
     </LinearLayout>
     <Button
         android:id="@+id/button"
