@@ -7,10 +7,13 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v7.content.res.AppCompatResources;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -53,6 +56,12 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     private Drawable likeDrawable;
     private Drawable unLikeDrawable;
 
+    private boolean hasLikeDrawableTintColor=false;
+    private boolean hasUnlikeDrawableTintColor=false;
+
+    private @ColorInt int likeDrawableTintColor;
+    private @ColorInt int unLikeDrawableTintColor;
+
     public LikeButton(Context context) {
         this(context, null);
     }
@@ -89,6 +98,16 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
             iconSize = 40;
 
         String iconType = array.getString(R.styleable.LikeButton_icon_type);
+
+        hasLikeDrawableTintColor=array.hasValue(R.styleable.LikeButton_like_drawable_tint);
+        if(hasLikeDrawableTintColor){
+            likeDrawableTintColor=array.getColor(R.styleable.LikeButton_like_drawable_tint,0);
+        }
+
+        hasUnlikeDrawableTintColor=array.hasValue(R.styleable.LikeButton_unlike_drawable_tint);
+        if(hasUnlikeDrawableTintColor){
+            unLikeDrawableTintColor=array.getColor(R.styleable.LikeButton_unlike_drawable_tint,0);
+        }
 
         likeDrawable = getDrawableFromResource(array, R.styleable.LikeButton_like_drawable);
 
@@ -142,7 +161,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     private Drawable getDrawableFromResource(TypedArray array, int styleableIndexId) {
         int id = array.getResourceId(styleableIndexId, -1);
 
-        return (-1 != id) ? ContextCompat.getDrawable(getContext(), id) : null;
+        return (-1 != id) ? AppCompatResources.getDrawable(getContext(), id) : null;
     }
 
     /**
@@ -289,15 +308,65 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
      * @param resId
      */
     public void setLikeDrawableRes(@DrawableRes int resId) {
-        likeDrawable = ContextCompat.getDrawable(getContext(), resId);
+        likeDrawable = AppCompatResources.getDrawable(getContext(), resId);
 
         if (iconSize != 0) {
             likeDrawable = Utils.resizeDrawable(getContext(), likeDrawable, iconSize, iconSize);
         }
+        tintDrawable(likeDrawable,hasLikeDrawableTintColor,likeDrawableTintColor);
 
         if (isChecked) {
             icon.setImageDrawable(likeDrawable);
         }
+    }
+
+    public boolean hasLikeDrawableTintColor() {
+        return hasLikeDrawableTintColor;
+    }
+
+    public void setHasLikeDrawableTintColor(boolean hasLikeDrawableTintColor) {
+        this.hasLikeDrawableTintColor = hasLikeDrawableTintColor;
+    }
+
+    public boolean hasUnlikeDrawableTintColor() {
+        return hasUnlikeDrawableTintColor;
+    }
+
+    public void setHasUnlikeDrawableTintColor(boolean hasUnlikeDrawableTintColor) {
+        this.hasUnlikeDrawableTintColor = hasUnlikeDrawableTintColor;
+    }
+
+    public int getLikeDrawableTintColor() {
+        return likeDrawableTintColor;
+    }
+
+    public void setLikeDrawableTintColor(int likeDrawableTintColor) {
+        this.likeDrawableTintColor = likeDrawableTintColor;
+        hasLikeDrawableTintColor = true;
+        tintDrawable(likeDrawable,hasLikeDrawableTintColor,likeDrawableTintColor);
+    }
+
+    public int getUnLikeDrawableTintColor() {
+        return unLikeDrawableTintColor;
+    }
+
+    public void setUnLikeDrawableTintColor(int unLikeDrawableTintColor) {
+        this.unLikeDrawableTintColor = unLikeDrawableTintColor;
+        hasUnlikeDrawableTintColor = true;
+        tintDrawable(unLikeDrawable,hasUnlikeDrawableTintColor,unLikeDrawableTintColor);
+    }
+
+    private void tintDrawable(Drawable drawable, boolean needTint, @ColorInt int tintColor){
+    	if(needTint){
+//    	    if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+//    	        drawable.setTint(tintColor);
+//		        drawable.invalidateSelf();
+//    	    }else{
+                drawable = DrawableCompat.wrap(drawable).mutate();
+		        DrawableCompat.setTint(drawable,tintColor);
+		        drawable.invalidateSelf();
+//            }
+	    }
     }
 
     /**
@@ -311,6 +380,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         if (iconSize != 0) {
             this.likeDrawable = Utils.resizeDrawable(getContext(), likeDrawable, iconSize, iconSize);
         }
+        tintDrawable(this.likeDrawable,hasLikeDrawableTintColor,likeDrawableTintColor);
 
         if (isChecked) {
             icon.setImageDrawable(this.likeDrawable);
@@ -323,11 +393,12 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
      * @param resId
      */
     public void setUnlikeDrawableRes(@DrawableRes int resId) {
-        unLikeDrawable = ContextCompat.getDrawable(getContext(), resId);
+        unLikeDrawable = AppCompatResources.getDrawable(getContext(), resId);
 
         if (iconSize != 0) {
             unLikeDrawable = Utils.resizeDrawable(getContext(), unLikeDrawable, iconSize, iconSize);
         }
+        tintDrawable(unLikeDrawable,hasUnlikeDrawableTintColor,unLikeDrawableTintColor);
 
         if (!isChecked) {
             icon.setImageDrawable(unLikeDrawable);
@@ -345,6 +416,7 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         if (iconSize != 0) {
             this.unLikeDrawable = Utils.resizeDrawable(getContext(), unLikeDrawable, iconSize, iconSize);
         }
+        tintDrawable(this.unLikeDrawable,hasUnlikeDrawableTintColor,unLikeDrawableTintColor);
 
         if (!isChecked) {
             icon.setImageDrawable(this.unLikeDrawable);
@@ -391,6 +463,8 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
         setEffectsViewSize();
         this.unLikeDrawable = Utils.resizeDrawable(getContext(), unLikeDrawable, iconSize, iconSize);
         this.likeDrawable = Utils.resizeDrawable(getContext(), likeDrawable, iconSize, iconSize);
+	    tintDrawable(likeDrawable,hasLikeDrawableTintColor,likeDrawableTintColor);
+	    tintDrawable(unLikeDrawable,hasUnlikeDrawableTintColor,unLikeDrawableTintColor);
     }
 
     /**
@@ -485,6 +559,11 @@ public class LikeButton extends FrameLayout implements View.OnClickListener {
     public void setCircleEndColorRes(@ColorRes int circleEndColor) {
         this.circleEndColor = ContextCompat.getColor(getContext(), circleEndColor);
         circleView.setEndColor(this.circleEndColor);
+    }
+
+    public void setCircleEndColorInt(@ColorInt int circleEndColor) {
+        this.circleEndColor = circleEndColor;
+        circleView.setEndColor(circleEndColor);
     }
 
     /**

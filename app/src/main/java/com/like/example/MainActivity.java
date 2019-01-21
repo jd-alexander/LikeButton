@@ -1,6 +1,7 @@
 package com.like.example;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements OnLikeListener,
     LikeButton thumbButton;
     @BindView(R.id.smile_button)
     LikeButton smileButton;
+    @BindView(R.id.vector_android_button)
+    LikeButton vectorButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements OnLikeListener,
 
         thumbButton.setLiked(true);
 
+        vectorButton.setLikeDrawableTintColor(Color.GREEN);
+        vectorButton.setUnLikeDrawableTintColor(Color.BLACK);
         usingCustomIcons();
 
     }

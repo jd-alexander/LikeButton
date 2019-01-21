@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.1"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.0"
+//    buildToolsVersion "28.0.0"
 
     lintOptions {
         abortOnError false
@@ -26,8 +27,8 @@ android {
 
 dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:appcompat-v7:27.0.1'
-    compile 'com.android.support:design:27.0.1'
+    compile 'com.android.support:appcompat-v7:28.0.0'
+    compile 'com.android.support:design:28.0.0'
     compile project(':likebutton')
     //compile 'com.github.jd-alexander:LikeButton:0.1.6'
     compile 'com.jakewharton:butterknife:8.8.1'

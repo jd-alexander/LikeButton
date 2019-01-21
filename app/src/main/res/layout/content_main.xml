@@ -65,6 +65,7 @@
             app:icon_size="22dp"
             app:like_drawable="@drawable/ic_android_green_500_24dp"
             app:unlike_drawable="@drawable/ic_android_grey_500_24dp" />
+
     </LinearLayout>
     <Button
         android:id="@+id/button"

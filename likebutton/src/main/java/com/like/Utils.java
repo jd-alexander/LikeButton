@@ -48,7 +48,7 @@ public class Utils {
             return ((BitmapDrawable) drawable).getBitmap();
         } else if (drawable instanceof VectorDrawableCompat) {
             return getBitmap((VectorDrawableCompat) drawable, width, height);
-        } else if (drawable instanceof VectorDrawable) {
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && drawable instanceof VectorDrawable) {
             return getBitmap((VectorDrawable) drawable, width, height);
         } else {
             throw new IllegalArgumentException("Unsupported drawable type");
