@@ -1,9 +1,9 @@
-package com.like;
+package com.like
 
 /**
  * Created by Joel on 23/12/2015.
  */
-public enum IconType {
+enum class IconType {
     Heart,
     Thumb,
     Star
