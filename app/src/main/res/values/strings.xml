@@ -2,4 +2,5 @@
     <string name="app_name">Like Button</string>
     <string name="action_settings">Settings</string>
     <string name="list_description">This sample is being used to show if the like button will retain its state when its in a long list thats scrollable and causes some buttons to be pushed off the screen. Even numbers will be associated with the Liked state while odd with Unliked.</string>
+    <string name="title_activity_coordinator">Coordinator</string>
 </resources>

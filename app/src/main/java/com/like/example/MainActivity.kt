@@ -103,6 +103,12 @@ class MainActivity : AppCompatActivity(), OnLikeListener, OnAnimationEndListener
         startActivity(intent)
     }
 
+    @OnClick(R.id.coordinator_button)
+    fun navigateToCoordinator() {
+        val intent = Intent(this, CoordinatorActivity::class.java)
+        startActivity(intent)
+    }
+
     companion object {
 
         val TAG = "MainActivity"
