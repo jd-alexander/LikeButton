@@ -153,4 +153,9 @@ public class CircleView extends View {
         END_COLOR = color;
         invalidate();
     }
+
+    public void lerninigContrebute(){
+        Sustem.out.println("lerning contrebute") 
+    }
 }
+
